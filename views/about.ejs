@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller los Santos</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <header role="banner">
+        <div class="container">
+            <p class="logo">Taller los Santos</p>
+            <nav aria-label="Main Navigation">
+                <button class="nav-toggle" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
+                <div class="nav-menu">
+                    <a href="/">Inicio</a>
+                    <a href="/services">Servicios</a>
+                    <a href="#contactModal" onclick="openModal()">Contacto</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <div class="content-container">
+                <div class="info">
+                    <h1>Taller los Santos</h1>
+                    <p>Fundado en 1998, Taller los Santos se dedica a ofrecer servicios de mantenimiento y reparación de vehículos en Cagua. Nuestro equipo de técnicos certificados utiliza tecnología avanzada para asegurar diagnósticos precisos y reparaciones de alta calidad.</p>
+                    <p>Nos enorgullece nuestra transparencia y dedicación a la satisfacción del cliente, proporcionando diagnósticos claros y detallados y educando a nuestros clientes sobre el cuidado de sus vehículos.</p>
+                    <p>Además, estamos comprometidos con la comunidad local, participando en iniciativas de responsabilidad social y programas de formación para jóvenes mecánicos. Confía en Taller los Santos para un servicio rápido, honesto y profesional.</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/about.jpg" alt="Imagen del Taller los Santos">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; Taller Los Santos 2024</p>
+        </div>
+    </footer>
+
+    <!-- Modal de contacto -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Contáctanos</h2>
+            <form>
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" placeholder="Escribe tu nombre" required><br>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required><br>
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea><br>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function toggleMenu() {
+        const navMenu = document.querySelector('.nav-menu');
+        navMenu.classList.toggle('show');
+    }
+
+    function openModal() {
+        document.getElementById('contactModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('contactModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var modal = document.getElementById('contactModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+    </script>
+</body>
+</html>

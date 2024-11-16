@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller los Santos</title>
+    <meta name="description" content="Taller Mecánico Los Santos en Cagua, Estado Aragua. Ofrecemos servicios de mantenimiento y reparación de vehículos con más de 20 años de experiencia.">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    
+    <header role="banner">
+        <div class="container">
+            <p class="logo">Taller los Santos</p>
+            <nav aria-label="Main Navigation">
+                <button class="nav-toggle" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
+                <div class="nav-menu">
+                    <a href="/">Inicio</a>
+                    <a href="/about">Sobre nosotros</a>
+                    <div class="dropdown">
+                        <button class="dropbtn" aria-label="Servicios">Nuestros servicios ⬇</button>
+                        <div class="dropdown-content">
+                            <a href="/maintenance">Mantenimiento Preventivo</a>
+                            <a href="/repairs">Reparaciones Mecánicas</a>
+                            <a href="/tires">Servicio de Neumáticos</a>
+                        </div>
+                    </div>
+                    <a href="/contact">Contacto</a>
+                </div>
+            </nav>            
+        </div>
+    </header>
+
+    <main role="main">
+        <section id="hero">
+            <h1>Contáctanos para <br> los mejores Mecánicos</h1>
+            <button id="contactButton" onclick="openModal()">¡Contáctanos ya!</button>
+        </section>
+
+        <section id="Losherma">
+            <div class="container">
+                <div class="image-container">
+                    <img src="images/Losherma.jpg" alt="Imagen del equipo de Los Santos">
+                </div>
+                <div class="texto">
+                    <h2>¡Somos Los Santos!</h2>
+                    <p>
+                        Taller Mecánico Los Santos en Cagua, Estado Aragua, ofrece más de 20 años de experiencia en mantenimiento y reparación de vehículos. Con servicios que incluyen cambios de aceite, reparaciones mecánicas y electricidad automotriz, nuestro equipo asegura la mejor calidad y atención personalizada. Visítanos de lunes a viernes de 8:00 AM a 6:00 PM y sábados de 8:00 AM a 2:00 PM.
+                    </p>
+                    <button id="contactButton" onclick="openModal()">Contacto</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="Nuestrosservicios">
+            <div class="container">
+                <h2>Nuestros Servicios</h2>
+                <div class="servicios">
+                    <div class="carta">
+                        <img src="images/Maintenance.jpg" alt="Mantenimiento Preventivo">
+                        <h3>Mantenimiento Preventivo</h3>
+                        <p>Realizamos mantenimientos preventivos esenciales para mantener tu vehículo en óptimas condiciones. Este servicio incluye cambios de aceite, filtros, y revisiones de frenos, asegurando que todos los componentes estén en buen estado.</p>
+                        <button onclick="location.href='/maintenance'">Conocer más +</button>
+                    </div>
+                    <div class="carta">
+                        <img src="images/Repairs.jpg" alt="Reparaciones Mecánicas">
+                        <h3>Reparaciones Mecánicas</h3>
+                        <p>Nuestro taller está equipado para diagnosticar y reparar una amplia gama de problemas mecánicos. Ya sea el motor, la transmisión o el sistema de escape, nuestros técnicos capacitados se encargan de devolver tu vehículo a su estado óptimo de funcionamiento.</p>
+                        <button onclick="location.href='/repairs'">Conocer más +</button>
+                    </div>
+                    <div class="carta">
+                        <img src="images/Tires.jpg" alt="Servicio de Neumáticos">
+                        <h3>Servicio de Neumáticos</h3>
+                        <p>Ofrecemos servicios completos para tus neumáticos, incluyendo venta, instalación, balanceo y alineación. Mantener los neumáticos en buen estado es crucial para la seguridad en la carretera.</p>
+                        <button onclick="location.href='/tires'">Conocer más +</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="caracteristicas">
+            <div class="container">
+                <div class="texto">
+                    <h2>Atención al Cliente y Preguntas Frecuentes</h2>
+                    <ul id="caracteristicas-list">
+                        <li>✅ Asesoría completa de mantenimiento</li>
+                        <li>✅ Horario flexible de atención</li>
+                        <li>✅ Asistencia y guía financiera</li>
+                        <li>✅ Descuentos y promociones</li>
+                        <li>✅ Servicio de grúa las 24 horas</li>
+                        <li>✅ Atención personalizada y rápida</li>
+                        <li>✅ Garantía en todas nuestras reparaciones</li>
+                        <li class="extra">✅ Técnicos altamente capacitados</li>
+                        <li class="extra">✅ Uso de repuestos originales y de alta calidad</li>
+                        <li class="extra">✅ Servicio de diagnóstico computarizado</li>
+                    </ul>
+                    <button id="toggleButton" onclick="toggleFeatures()">Mostrar Menos</button>
+                </div>
+                <img src="images/Client.jpg" alt="Atención al Cliente">
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; Taller Los Santos 2024</p>
+        </div>
+    </footer>
+
+   
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Contáctanos</h2>
+            <form id="contactForm" onsubmit="return handleSubmit(event)">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" placeholder="Escribe tu nombre" required><br>
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required><br>
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea><br>
+                <button type="submit">Enviar</button>
+            </form>
+            <div id="confirmationMessage" class="confirmation-message">
+                ¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/javascripts/scripts.js"></script>
+</body>
+</html>

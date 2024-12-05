@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
         }
 
-        // Añadir manejo de la confirmación del formulario
         handleSubmit(event);
     });
 

@@ -9,7 +9,7 @@ var aboutRouter = require('./routes/about');
 var maintenanceRouter = require('./routes/maintenance');
 var repairsRouter = require('./routes/repairs');
 var tiresRouter = require('./routes/tires');
-var contactRouter = require('./routes/contact');
+var contactRouter = require('./routes/contactRouter'); // Asegúrate de usar el nombre correcto del archivo
 
 var app = express();
 
@@ -29,7 +29,7 @@ app.use('/', aboutRouter);
 app.use('/', maintenanceRouter);
 app.use('/', repairsRouter);
 app.use('/', tiresRouter);
-app.use('/', contactRouter);
+app.use('/', contactRouter); // Agregar la nueva ruta aquí
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

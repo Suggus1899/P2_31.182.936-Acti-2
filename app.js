@@ -1,48 +1,49 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var aboutRouter = require('./routes/about');
-var maintenanceRouter = require('./routes/maintenance');
-var repairsRouter = require('./routes/repairs');
-var tiresRouter = require('./routes/tires');
-var contactRouter = require('./routes/contactRouter'); // Asegúrate de usar el nombre correcto del archivo
+const indexRouter = require('./routes/index');
+const aboutRouter = require('./routes/about');
+const maintenanceRouter = require('./routes/maintenance');
+const repairsRouter = require('./routes/repairs');
+const tiresRouter = require('./routes/tires');
+const contactRouter = require('./routes/contactRouter');
 
-var app = express();
+const app = express();
 
-// view engine setup
+// Configuración del motor de vistas
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Register routes
+// Registro de rutas
 app.use('/', indexRouter);
-app.use('/', aboutRouter);
-app.use('/', maintenanceRouter);
-app.use('/', repairsRouter);
-app.use('/', tiresRouter);
-app.use('/', contactRouter); // Agregar la nueva ruta aquí
+app.use('/about', aboutRouter);
+app.use('/maintenance', maintenanceRouter);
+app.use('/repairs', repairsRouter);
+app.use('/tires', tiresRouter);
+app.use('/contact', contactRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// Captura de errores 404 y reenvío al manejador de errores
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+// Manejador de errores
+app.use((err, req, res, next) => {
+  // Configura las variables locales, solo proporcionando errores en desarrollo
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // Renderiza la página de error
   res.status(err.status || 500);
   res.render('error');
 });

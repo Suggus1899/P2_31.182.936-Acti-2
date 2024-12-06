@@ -117,13 +117,13 @@
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
             <h2>Contáctanos</h2>
-            <form id="contactForm" onsubmit="return handleSubmit(event)">
+            <form id="contactForm" action="/contact" method="POST" onsubmit="return handleSubmit(event)">
                 <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" placeholder="Escribe tu nombre" required><br>
+                <input type="text" id="name" name="nombre" placeholder="Escribe tu nombre" required><br>
                 <label for="email">Correo electrónico:</label>
                 <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required><br>
                 <label for="message">Mensaje:</label>
-                <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea><br>
+                <textarea id="message" name="mensaje" placeholder="Escribe tu mensaje" required></textarea><br>
                 <button type="submit">Enviar</button>
             </form>
             <div id="confirmationMessage" class="confirmation-message" aria-live="polite">

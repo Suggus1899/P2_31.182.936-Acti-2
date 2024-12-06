@@ -1,4 +1,4 @@
-const ContactosModel = require('./ContactosModel');
+const ContactosModel = require('../models/ContactosModel');
 const model = new ContactosModel();
 
 const ContactosController = {
@@ -9,13 +9,14 @@ const ContactosController = {
     const ip = req.ip;
     const fecha_hora = new Date().toISOString();
 
-    // Validación de datos
+    // Validar los datos del formulario
     if (!nombre || !email || !mensaje) {
       console.error("Error: Todos los campos son obligatorios.");
       res.status(400).send("Todos los campos son obligatorios.");
       return;
     }
 
+    // Llamar al método guardarDatos del modelo
     model.guardarDatos(nombre, email, mensaje, ip, fecha_hora, (err) => {
       if (err) {
         console.error("Error al guardar los datos:", err.message);

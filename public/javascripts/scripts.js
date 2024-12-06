@@ -75,7 +75,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSubmit(event) {
         event.preventDefault(); // Evita el envío real del formulario
-        document.getElementById('confirmationMessage').style.display = 'block'; // Muestra el mensaje de confirmación
-        document.getElementById('contactForm').reset(); // Limpia el formulario
+
+        const form = document.getElementById('contactForm');
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        fetch('/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('confirmationMessage').style.display = 'block'; // Muestra el mensaje de confirmación
+                form.reset(); // Limpia el formulario
+            } else {
+                alert('Hubo un error al enviar el formulario.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un error al enviar el formulario.');
+        });
     }
 });

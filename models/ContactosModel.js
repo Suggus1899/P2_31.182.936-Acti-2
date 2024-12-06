@@ -17,7 +17,7 @@ class ContactosModel {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nombre TEXT,
       email TEXT,
-      mensaje TEXT,
+      comentario TEXT,
       ip TEXT,
       fecha_hora TEXT
     )`;
@@ -30,15 +30,15 @@ class ContactosModel {
     });
   }
 
-  guardarDatos(nombre, email, mensaje, ip, fecha_hora, callback) {
-    const sql = `INSERT INTO contactos (nombre, email, mensaje, ip, fecha_hora) VALUES (?, ?, ?, ?, ?)`;
-    this.db.run(sql, [nombre, email, mensaje, ip, fecha_hora], function (err) {
+  guardarDatos(nombre, email, comentario, ip, fecha_hora, callback) {
+    const sql = `INSERT INTO contactos (nombre, email, comentario, ip, fecha_hora) VALUES (?, ?, ?, ?, ?)`;
+    this.db.run(sql, [nombre, email, comentario, ip, fecha_hora], function (err) {
       if (err) {
         console.error('Error al insertar datos:', err.message);
         callback(err);
         return;
       }
-      console.log('Datos insertados correctamente:', { nombre, email, mensaje, ip, fecha_hora });
+      console.log('Datos insertados correctamente:', { nombre, email, comentario, ip, fecha_hora });
       callback(null);
     });
   }

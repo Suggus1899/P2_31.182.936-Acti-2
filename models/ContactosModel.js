@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 class ContactosModel {
   constructor() {
-    this.db = new sqlite3.Database('./database/contactos.db', (err) => {
+    this.db = new sqlite3.Database(process.env.DATABASE_PATH || './database/contactos.db', (err) => {
       if (err) {
         console.error('Error al conectar con la base de datos:', err.message);
       } else {
@@ -13,15 +13,14 @@ class ContactosModel {
   }
 
   crearTabla() {
-    const sql = `
-      CREATE TABLE IF NOT EXISTS contactos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre TEXT,
-        email TEXT,
-        comentario TEXT,
-        ip TEXT,
-        fecha_hora TEXT
-      )`;
+    const sql = `CREATE TABLE IF NOT EXISTS contactos (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nombre VARCHAR(50),
+      email TEXT,
+      comentario VARCHAR(100),
+      ip TEXT,
+      fecha_hora TEXT
+    )`;
     this.db.run(sql, (err) => {
       if (err) {
         console.error('Error al crear la tabla:', err.message);

@@ -102,12 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .then(data => {
-            document.getElementById('confirmationMessage').style.display = 'block'; // Muestra el mensaje de confirmación
-            form.reset(); // Limpia el formulario
-            console.log('Respuesta del servidor:', data);
+            console.log('Respuesta del servidor:', data.message);
+            alert('Formulario enviado correctamente.');
+            window.location.href = '/thanks'; // Redirigir a la página de agradecimiento
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error:', error.message);
             alert('Hubo un error al enviar el formulario: ' + error.message);
         });
     }

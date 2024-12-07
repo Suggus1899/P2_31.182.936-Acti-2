@@ -3,34 +3,27 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-const indexRouter = require('./routes/index');
-const aboutRouter = require('./routes/about');
-const maintenanceRouter = require('./routes/maintenance');
-const repairsRouter = require('./routes/repairs');
-const tiresRouter = require('./routes/tires');
-const contactRouter = require('./routes/contactRouter');
+const ip = require('express-ip');
+const routes = require('./routes/routes');
 
 const app = express();
 
-// Configuración del motor de vistas
+// Configuración del motor de plantillas EJS
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Middlewares
+// Servir archivos estáticos
+const staticPath = process.env.STATIC_PATH || 'public';
+app.use(express.static(path.join(__dirname, staticPath)));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(ip().getIpInfoMiddleware);
 
 // Registro de rutas
-app.use('/', indexRouter);
-app.use('/about', aboutRouter);
-app.use('/maintenance', maintenanceRouter);
-app.use('/repairs', repairsRouter);
-app.use('/tires', tiresRouter);
-app.use('/contact', contactRouter);
+app.use('/', routes);
 
 // Captura de errores 404 y reenvío al manejador de errores
 app.use((req, res, next) => {
@@ -39,13 +32,15 @@ app.use((req, res, next) => {
 
 // Manejador de errores
 app.use((err, req, res, next) => {
-  // Configura las variables locales, solo proporcionando errores en desarrollo
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // Renderiza la página de error
   res.status(err.status || 500);
   res.render('error');
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Servidor escuchando en el puerto ${port}\n`);
 });
 
 module.exports = app;

@@ -13,14 +13,15 @@ class ContactosModel {
   }
 
   crearTabla() {
-    const sql = `CREATE TABLE IF NOT EXISTS contactos (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nombre TEXT,
-      email TEXT,
-      comentario TEXT,
-      ip TEXT,
-      fecha_hora TEXT
-    )`;
+    const sql = `
+      CREATE TABLE IF NOT EXISTS contactos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre TEXT,
+        email TEXT,
+        comentario TEXT,
+        ip TEXT,
+        fecha_hora TEXT
+      )`;
     this.db.run(sql, (err) => {
       if (err) {
         console.error('Error al crear la tabla:', err.message);

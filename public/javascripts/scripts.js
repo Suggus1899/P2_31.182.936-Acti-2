@@ -58,11 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!validateEmail(email.value)) {
             alert('Por favor, ingresa una dirección de correo electrónico válida.');
             event.preventDefault();
+            return;
         }
 
         if (message.value.trim() === '') {
             alert('Por favor, ingresa tu mensaje.');
             event.preventDefault();
+            return;
         }
 
         handleSubmit(event);
@@ -92,15 +94,21 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
             if (response.ok) {
-                document.getElementById('confirmationMessage').style.display = 'block'; // Muestra el mensaje de confirmación
-                form.reset(); // Limpia el formulario
+                return response.json(); // Parsear la respuesta JSON
             } else {
-                alert('Hubo un error al enviar el formulario.');
+                return response.json().then(error => {
+                    throw new Error(error.message); // Lanzar error con el mensaje de respuesta
+                });
             }
+        })
+        .then(data => {
+            document.getElementById('confirmationMessage').style.display = 'block'; // Muestra el mensaje de confirmación
+            form.reset(); // Limpia el formulario
+            console.log('Respuesta del servidor:', data);
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Hubo un error al enviar el formulario.');
+            alert('Hubo un error al enviar el formulario: ' + error.message);
         });
     }
 });

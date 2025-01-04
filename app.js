@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -5,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const ip = require('express-ip');
 const routes = require('./routes/routes');
+const contactosRouter = require('./routes/contactos');
 
 const app = express();
 
@@ -24,6 +26,7 @@ app.use(ip().getIpInfoMiddleware);
 
 // Registro de rutas
 app.use('/', routes);
+app.use('/contactos', contactosRouter);
 
 // Captura de errores 404 y reenvío al manejador de errores
 app.use((req, res, next) => {
@@ -38,9 +41,6 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Servidor escuchando en el puerto ${port}\n`);
-});
-
 module.exports = app;
+
+console.log('IPSTACK_API_KEY:', process.env.IPSTACK_API_KEY);

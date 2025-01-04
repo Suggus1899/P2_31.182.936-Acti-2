@@ -1,4 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
+const axios = require('axios');
+const moment = require('moment-timezone');
+
+const ipstackKey = process.env.IPSTACK_API_KEY;
 
 class ContactosModel {
   constructor() {
@@ -19,7 +23,8 @@ class ContactosModel {
       email TEXT,
       comentario VARCHAR(100),
       ip TEXT,
-      fecha_hora TEXT
+      fecha_hora TEXT,
+      pais VARCHAR(50)
     )`;
     this.db.run(sql, (err) => {
       if (err) {
@@ -30,15 +35,15 @@ class ContactosModel {
     });
   }
 
-  guardarDatos(nombre, email, comentario, ip, fecha_hora, callback) {
-    const sql = `INSERT INTO contactos (nombre, email, comentario, ip, fecha_hora) VALUES (?, ?, ?, ?, ?)`;
-    this.db.run(sql, [nombre, email, comentario, ip, fecha_hora], function (err) {
+  guardarDatos(nombre, email, comentario, ip, fecha_hora, country, callback) {
+    const sql = `INSERT INTO contactos (nombre, email, comentario, ip, fecha_hora, pais) VALUES (?, ?, ?, ?, ?, ?)`;
+    this.db.run(sql, [nombre, email, comentario, ip, fecha_hora, country], function (err) {
       if (err) {
         console.error('Error al insertar datos:', err.message);
         callback(err);
         return;
       }
-      console.log('Datos insertados correctamente:', { nombre, email, comentario, ip, fecha_hora });
+      console.log('Datos insertados correctamente:', { nombre, email, comentario, ip, fecha_hora, country });
       callback(null);
     });
   }
@@ -57,4 +62,14 @@ class ContactosModel {
   }
 }
 
-module.exports = ContactosModel;
+const getCountryByIp = async (ip) => {
+  try {
+    const response = await axios.get(`https://api.ipstack.com/${ip}?access_key=${ipstackKey}`);
+    return response.data.country_name;
+  } catch (error) {
+    console.error('Error al obtener el país por IP:', error.message);
+    return null;
+  }
+};
+
+module.exports = { ContactosModel, getCountryByIp };

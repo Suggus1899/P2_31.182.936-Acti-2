@@ -12,25 +12,46 @@ class ContactosModel {
       } else {
         console.log('Conectado a la base de datos SQLite.');
         this.crearTabla();
+        this.agregarColumnaPais(); 
       }
     });
   }
 
   crearTabla() {
-    const sql = `CREATE TABLE IF NOT EXISTS contactos (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      nombre VARCHAR(50),
-      email TEXT,
-      comentario VARCHAR(100),
-      ip TEXT,
-      fecha_hora TEXT,
-      pais VARCHAR(50)
-    )`;
+    const sql = `
+      CREATE TABLE IF NOT EXISTS contactos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nombre VARCHAR(50),
+        email TEXT,
+        comentario VARCHAR(100),
+        ip TEXT,
+        fecha_hora TEXT,
+        pais VARCHAR(50)
+      )
+    `;
     this.db.run(sql, (err) => {
       if (err) {
         console.error('Error al crear la tabla:', err.message);
       } else {
         console.log("Tabla 'contactos' creada o ya existe.");
+      }
+    });
+  }
+
+  agregarColumnaPais() {
+    const sql = `
+      ALTER TABLE contactos
+      ADD COLUMN pais VARCHAR(50)
+    `;
+    this.db.run(sql, (err) => {
+      if (err) {
+        if (err.message.includes('duplicate column name')) {
+          console.log("La columna 'pais' ya existe.");
+        } else {
+          console.error('Error al agregar la columna:', err.message);
+        }
+      } else {
+        console.log("Columna 'pais' agregada correctamente.");
       }
     });
   }
@@ -63,6 +84,9 @@ class ContactosModel {
 }
 
 const getCountryByIp = async (ip) => {
+  if (ip === '127.0.0.1' || ip === '::1') {
+    return 'Localhost'; 
+  }
   try {
     const response = await axios.get(`https://api.ipstack.com/${ip}?access_key=${ipstackKey}`);
     return response.data.country_name;

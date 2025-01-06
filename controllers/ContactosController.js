@@ -1,19 +1,31 @@
 const { ContactosModel, getCountryByIp } = require('../models/ContactosModel');
-const model = new ContactosModel(); // Instancia única de la clase ContactosModel
+const model = new ContactosModel(); 
+const axios = require('axios');
 const moment = require('moment-timezone');
+const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY; 
 
 const ContactosController = {
   add: async function(req, res) {
-    const nombre = req.body.nombre;
-    const email = req.body.email;
-    const comentario = req.body.comentario;
+    const { nombre, email, comentario, 'g-recaptcha-response': recaptchaResponse } = req.body;
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     const fecha_hora = moment().tz('America/Caracas').format('YYYY-MM-DD HH:mm:ss');
 
+    // Verificar reCAPTCHA
+    const recaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${recaptchaResponse}&remoteip=${ip}`;
+    try {
+      const recaptchaResult = await axios.post(recaptchaUrl);
+      if (!recaptchaResult.data.success) {
+        console.error("Error: reCAPTCHA falló.");
+        return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
+      }
+    } catch (error) {
+      console.error("Error al verificar reCAPTCHA:", error.message);
+      return res.status(500).json({ message: "Error al verificar reCAPTCHA." });
+    }
+
     if (!nombre || !email || !comentario) {
       console.error("Error: Todos los campos son obligatorios.");
-      res.status(400).json({ message: "Todos los campos son obligatorios." });
-      return;
+      return res.status(400).json({ message: "Todos los campos son obligatorios." });
     }
 
     try {
@@ -21,18 +33,16 @@ const ContactosController = {
       model.guardarDatos(nombre, email, comentario, ip, fecha_hora, country, (err) => {
         if (err) {
           console.error("Error al guardar los datos:", err.message);
-          res.status(500).json({ message: "Error al guardar los datos." });
-          return;
+          return res.status(500).json({ message: "Error al guardar los datos." });
         }
         console.log("Datos guardados correctamente:", { nombre, email, comentario, ip, fecha_hora, country });
-        res.status(200).json({ message: "Datos guardados correctamente." });
+        return res.status(200).json({ message: "Datos guardados correctamente." });
       });
     } catch (error) {
       console.error("Error al obtener el país:", error.message);
-      res.status(500).json({ message: "Error al obtener el país." });
+      return res.status(500).json({ message: "Error al obtener el país." });
     }
-  },
-  getCountryByIp 
+  }
 };
 
 module.exports = ContactosController;

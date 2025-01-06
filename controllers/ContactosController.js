@@ -2,7 +2,11 @@ const { ContactosModel, getCountryByIp } = require('../models/ContactosModel');
 const model = new ContactosModel(); 
 const axios = require('axios');
 const moment = require('moment-timezone');
-const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY; 
+const nodemailer = require('nodemailer');
+const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
+const emailUser = process.env.EMAIL_USER;
+const emailPass = process.env.EMAIL_PASS;
+const emailRecipients = process.env.EMAIL_RECIPIENTS; // Añadido para múltiples destinatarios
 
 const ContactosController = {
   add: async function(req, res) {
@@ -36,7 +40,39 @@ const ContactosController = {
           return res.status(500).json({ message: "Error al guardar los datos." });
         }
         console.log("Datos guardados correctamente:", { nombre, email, comentario, ip, fecha_hora, country });
-        return res.status(200).json({ message: "Datos guardados correctamente." });
+
+        // Configurar el transporte de correo
+        const transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            user: emailUser,
+            pass: emailPass
+          }
+        });
+
+        // Configurar el contenido del correo electrónico
+        const mailOptions = {
+          from: emailUser,
+          to: emailRecipients,
+          subject: 'Nuevo mensaje de contacto',
+          text: `Has recibido un nuevo mensaje de contacto:
+                  Nombre: ${nombre}
+                  Correo electrónico: ${email}
+                  Comentario: ${comentario}
+                  Dirección IP: ${ip}
+                  País: ${country}
+                  Fecha y hora: ${fecha_hora}`
+        };
+
+        // Enviar el correo electrónico
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.error('Error al enviar el correo electrónico:', error);
+            return res.status(500).json({ message: 'Error al enviar el correo electrónico.' });
+          }
+          console.log('Correo electrónico enviado:', info.response);
+          return res.status(200).json({ message: 'Datos guardados y correo electrónico enviado correctamente.' });
+        });
       });
     } catch (error) {
       console.error("Error al obtener el país:", error.message);

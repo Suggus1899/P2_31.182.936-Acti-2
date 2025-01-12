@@ -19,6 +19,7 @@
     "moment-timezone": "^0.5.46",
     "morgan": "~1.9.1",
     "myapp": "file:",
+    "nodemailer": "^6.9.16",
     "sqlite3": "^5.1.7"
   }
 }

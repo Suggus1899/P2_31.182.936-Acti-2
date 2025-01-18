@@ -1,4 +1,5 @@
-const { ContactosModel, getCountryByIp } = require('../models/ContactosModel');
+const { ContactosModel } = require('../models/ContactosModel');
+const { getCountryByIp } = require('../models/getCountryByIp');  // Importar la función desde getCountryByIp.js
 const model = new ContactosModel(); 
 const axios = require('axios');
 const moment = require('moment-timezone');
@@ -6,7 +7,7 @@ const nodemailer = require('nodemailer');
 const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
 const emailUser = process.env.EMAIL_USER;
 const emailPass = process.env.EMAIL_PASS;
-const emailRecipients = process.env.EMAIL_RECIPIENTS; // Añadido para múltiples destinatarios
+const emailRecipients = process.env.EMAIL_RECIPIENTS;
 
 const ContactosController = {
   add: async function(req, res) {
@@ -56,12 +57,12 @@ const ContactosController = {
           to: emailRecipients,
           subject: 'Nuevo mensaje de contacto',
           text: `Has recibido un nuevo mensaje de contacto:
-                  Nombre: ${nombre}
-                  Correo electrónico: ${email}
-                  Comentario: ${comentario}
-                  Dirección IP: ${ip}
-                  País: ${country}
-                  Fecha y hora: ${fecha_hora}`
+                Nombre: ${nombre}
+                Correo electrónico: ${email}
+                Comentario: ${comentario}
+                Dirección IP: ${ip}
+                País: ${country}
+                Fecha y hora: ${fecha_hora}`
         };
 
         // Enviar el correo electrónico

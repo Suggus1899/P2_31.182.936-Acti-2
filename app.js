@@ -42,5 +42,3 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
-
-console.log('IPSTACK_API_KEY:', process.env.IPSTACK_API_KEY);

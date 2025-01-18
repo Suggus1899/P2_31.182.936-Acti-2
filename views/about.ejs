@@ -49,6 +49,13 @@
                 </div>
             </div>
         </section>
+
+        <section id="location">
+            <div class="container">
+                <h2>Ubicación</h2>
+                <div id="map"></div>
+            </div>
+        </section>
     </main>
 
     <footer role="contentinfo">
@@ -123,6 +130,19 @@
         const re = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     }
+
+    function initMap() {
+        const location = { lat: 10.1869, lng: -67.4526 };
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: location
+        });
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_CLAVE_DE_API&callback=initMap"></script>
 </body>
 </html>

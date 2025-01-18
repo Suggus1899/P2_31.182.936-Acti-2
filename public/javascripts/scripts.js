@@ -111,4 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Hubo un error al enviar el formulario: ' + error.message);
         });
     }
+
+    function initMap() {
+        const location = { lat: 10.1869, lng: -67.4526 };
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: location
+        });
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
 });

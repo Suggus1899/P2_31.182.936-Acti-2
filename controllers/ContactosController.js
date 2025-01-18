@@ -12,7 +12,8 @@ const emailRecipients = process.env.EMAIL_RECIPIENTS;
 const ContactosController = {
   add: async function(req, res) {
     const { nombre, email, comentario, 'g-recaptcha-response': recaptchaResponse } = req.body;
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    ip = ip.split(',')[0]; // Usar solo la primera IP
     const fecha_hora = moment().tz('America/Caracas').format('YYYY-MM-DD HH:mm:ss');
 
     // Verificar reCAPTCHA

@@ -35,4 +35,10 @@ router.get('/users', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+// Ruta para la página de agradecimiento
+router.get('/thanks', function(req, res, next) {
+  res.render('thanks', { title: 'Gracias' });
+});
+
+
 module.exports = router;

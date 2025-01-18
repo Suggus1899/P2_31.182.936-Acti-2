@@ -1,5 +1,5 @@
 const { ContactosModel } = require('../models/ContactosModel');
-const { getCountryByIp } = require('../models/getCountryByIp');  // Ruta correcta
+const { getCountryByIp } = require('../models/getCountryByIp');
 const model = new ContactosModel(); 
 const axios = require('axios');
 const moment = require('moment-timezone');
@@ -28,13 +28,18 @@ const ContactosController = {
       return res.status(500).json({ message: "Error al verificar reCAPTCHA." });
     }
 
-    if (!nombre || !email || no_comentario) {
+    if (!nombre || !email || !comentario) {
       console.error("Error: Todos los campos son obligatorios.");
       return res.status(400).json({ message: "Todos los campos son obligatorios." });
     }
 
     try {
       const country = await getCountryByIp(ip);
+      if (!country) {
+        console.error("Error: No se pudo obtener el país.");
+        return res.status(500).json({ message: "No se pudo obtener el país." });
+      }
+
       model.guardarDatos(nombre, email, comentario, ip, fecha_hora, country, (err) => {
         if (err) {
           console.error("Error al guardar los datos:", err.message);
@@ -56,13 +61,14 @@ const ContactosController = {
           from: emailUser,
           to: emailRecipients,
           subject: 'Nuevo mensaje de contacto',
-          text: `Has recibido un nuevo mensaje de contacto:
-                Nombre: ${nombre}
-                Correo electrónico: ${email}
-                Comentario: ${comentario}
-                Dirección IP: ${ip}
-                País: ${country}
-                Fecha y hora: ${fecha_hora}`
+          text: `
+            Has recibido un nuevo mensaje de contacto:
+            Nombre: ${nombre}
+            Correo electrónico: ${email}
+            Comentario: ${comentario}
+            Dirección IP: ${ip}
+            País: ${country}
+            Fecha y hora: ${fecha_hora}`
         };
 
         // Enviar el correo electrónico

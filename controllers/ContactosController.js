@@ -1,5 +1,5 @@
 const { ContactosModel } = require('../models/ContactosModel');
-const { getCountryByIp } = require('../models/getCountryByIp');  // Importar la función desde getCountryByIp.js
+const { getCountryByIp } = require('../models/getCountryByIp');  // Ruta correcta
 const model = new ContactosModel(); 
 const axios = require('axios');
 const moment = require('moment-timezone');
@@ -28,7 +28,7 @@ const ContactosController = {
       return res.status(500).json({ message: "Error al verificar reCAPTCHA." });
     }
 
-    if (!nombre || !email || !comentario) {
+    if (!nombre || !email || no_comentario) {
       console.error("Error: Todos los campos son obligatorios.");
       return res.status(400).json({ message: "Todos los campos son obligatorios." });
     }

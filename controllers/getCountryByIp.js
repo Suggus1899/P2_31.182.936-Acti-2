@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getCountryByIp = async (ip) => {
-  const apiKey = process.env.IPSTACK_API_KEY; 
+  const apiKey = process.env.IPSTACK_API_KEY;
   const url = `http://api.ipstack.com/${ip}?access_key=${apiKey}`;
 
   try {

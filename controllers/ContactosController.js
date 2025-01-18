@@ -29,7 +29,7 @@ const ContactosController = {
       return res.status(500).json({ message: "Error al verificar reCAPTCHA." });
     }
 
-    if (!nombre || no_email || no_comentario) {
+    if (!nombre || !email || !comentario) {
       console.error("Error: Todos los campos son obligatorios.");
       return res.status(400).json({ message: "Todos los campos son obligatorios." });
     }

@@ -21,7 +21,7 @@ const ContactosController = {
     try {
       const recaptchaResult = await axios.post(recaptchaUrl);
       if (!recaptchaResult.data.success) {
-        console.error("Error: reCAPTCHA falló.");
+        console.error("Error: reCAPTCHA falló:", recaptchaResult.data['error-codes']);
         return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
       }
     } catch (error) {

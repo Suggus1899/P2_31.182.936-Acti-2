@@ -9,6 +9,23 @@ const emailUser = process.env.EMAIL_USER;
 const emailPass = process.env.EMAIL_PASS;
 const emailRecipients = process.env.EMAIL_RECIPIENTS;
 
+const verifyRecaptcha = async (recaptchaResponse, ip) => {
+  const recaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${recaptchaResponse}&remoteip=${ip}`;
+  try {
+    const recaptchaResult = await axios.post(recaptchaUrl);
+    console.log(`Respuesta de reCAPTCHA: ${JSON.stringify(recaptchaResult.data)}`);
+    if (recaptchaResult.data.success) {
+      return true;
+    } else {
+      console.error("Error: reCAPTCHA falló:", recaptchaResult.data['error-codes']);
+      return false;
+    }
+  } catch (error) {
+    console.error("Error al verificar reCAPTCHA:", error.message);
+    return false;
+  }
+};
+
 const ContactosController = {
   add: async function(req, res) {
     const { nombre, email, comentario, 'g-recaptcha-response': recaptchaResponse } = req.body;
@@ -17,16 +34,9 @@ const ContactosController = {
     const fecha_hora = moment().tz('America/Caracas').format('YYYY-MM-DD HH:mm:ss');
 
     // Verificar reCAPTCHA
-    const recaptchaUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecretKey}&response=${recaptchaResponse}&remoteip=${ip}`;
-    try {
-      const recaptchaResult = await axios.post(recaptchaUrl);
-      if (!recaptchaResult.data.success) {
-        console.error("Error: reCAPTCHA falló:", recaptchaResult.data['error-codes']);
-        return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
-      }
-    } catch (error) {
-      console.error("Error al verificar reCAPTCHA:", error.message);
-      return res.status(500).json({ message: "Error al verificar reCAPTCHA." });
+    const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse, ip);
+    if (!isRecaptchaValid) {
+      return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
     }
 
     if (!nombre || !email || !comentario) {

@@ -40,6 +40,7 @@ const ContactosController = {
         return res.status(500).json({ message: "No se pudo obtener el país." });
       }
 
+      // Guardar datos en la base de datos
       model.guardarDatos(nombre, email, comentario, ip, fecha_hora, country, (err) => {
         if (err) {
           console.error("Error al guardar los datos:", err.message);

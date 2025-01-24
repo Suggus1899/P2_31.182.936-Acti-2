@@ -19,6 +19,16 @@
         gtag('config', 'G-D4MZ2VB0K3');
     </script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <header role="banner">
@@ -122,8 +132,8 @@
             return;
         }
 
-        document.getElementById('confirmationMessage').style.display = 'block'; // Muestra el mensaje de confirmación
-        document.getElementById('contactForm').reset(); // Limpia el formulario
+        document.getElementById('confirmationMessage').style.display = 'block'; 
+        document.getElementById('contactForm').reset(); 
     });
 
     function validateEmail(email) {

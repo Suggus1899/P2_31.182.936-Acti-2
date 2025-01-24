@@ -40,5 +40,4 @@ router.get('/thanks', function(req, res, next) {
   res.render('thanks', { title: 'Gracias' });
 });
 
-
 module.exports = router;

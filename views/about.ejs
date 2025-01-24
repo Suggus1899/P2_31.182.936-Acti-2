@@ -39,7 +39,7 @@
                 <div class="nav-menu">
                     <a href="/">Inicio</a>
                     <a href="/services">Servicios</a>
-                    <a href="#contactModal" onclick="openModal()">Contacto</a>
+                    <a href="#location">Ubicación</a>
                 </div>
             </nav>
         </div>
@@ -63,7 +63,8 @@
         <section id="location">
             <div class="container">
                 <h2>Ubicación</h2>
-                <div id="map"></div>
+                <!-- Aquí inserta el iframe de Google Maps -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7854.412534756171!2d-67.46163293335495!3d10.163882373953664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e802134a340b479%3A0xab34ebdc09134549!2sRepuestos%20Guerrero%20G%20%26%20G%20C.A.!5e0!3m2!1ses!2sve!4v1737695796901!5m2!1ses!2sve" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
     </main>
@@ -74,85 +75,11 @@
         </div>
     </footer>
 
-    <!-- Modal de contacto -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>Contáctanos</h2>
-            <form id="contactForm" action="/contact/add" method="POST" onsubmit="return handleSubmit(event)">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="nombre" placeholder="Escribe tu nombre" required><br>
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required><br>
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="comentario" placeholder="Escribe tu mensaje" required></textarea><br>
-                <!-- Widget de reCAPTCHA -->
-                <div class="g-recaptcha" data-sitekey="6LdELq8qAAAAAMyxoN3WRlC2PghCmnXcBUc5V34V"></div>
-                <button type="submit">Enviar</button>
-            </form>
-            <div id="confirmationMessage" class="confirmation-message" aria-live="polite">
-                ¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.
-            </div>
-        </div>
-    </div>
-
     <script>
     function toggleMenu() {
         const navMenu = document.querySelector('.nav-menu');
         navMenu.classList.toggle('show');
     }
-
-    function openModal() {
-        document.getElementById('contactModal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('contactModal').style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        const modal = document.getElementById('contactModal');
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Evita el envío real del formulario
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value.trim();
-
-        if (!validateEmail(email)) {
-            alert('Por favor, ingresa una dirección de correo electrónico válida.');
-            return;
-        }
-
-        if (message === '') {
-            alert('Por favor, ingresa tu mensaje.');
-            return;
-        }
-
-        document.getElementById('confirmationMessage').style.display = 'block'; 
-        document.getElementById('contactForm').reset(); 
-    });
-
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    }
-
-    function initMap() {
-        const location = { lat: 10.1869, lng: -67.4526 };
-        const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: location
-        });
-        const marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-    }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_CLAVE_DE_API&callback=initMap"></script>
 </body>
 </html>

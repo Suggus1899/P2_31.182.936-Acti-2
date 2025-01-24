@@ -1,1 +1,15 @@
-node_modules
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Otros archivos que no deben subirse
+.DS_Store
+.idea/
+.vscode/

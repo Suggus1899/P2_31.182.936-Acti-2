@@ -7,8 +7,22 @@ const logger = require('morgan');
 const ip = require('express-ip');
 const routes = require('./routes/routes');
 const contactosRouter = require('./routes/contactos');
+const authRouter = require('./routes/auth');
+const session = require('express-session');
 
 const app = express();
+
+// Configuración de Sesiones
+app.use(session({
+  secret: 'mi-secreto',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 15 * 60 * 1000 // 15 minutos
+  }
+}));
 
 // Configuración del motor de plantillas EJS
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +41,7 @@ app.use(ip().getIpInfoMiddleware);
 // Registro de rutas
 app.use('/', routes);
 app.use('/contactos', contactosRouter);
+app.use('/auth', authRouter);
 
 // Captura de errores 404 y reenvío al manejador de errores
 app.use((req, res, next) => {

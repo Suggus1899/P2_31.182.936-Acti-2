@@ -655,3 +655,32 @@ main {
   text-align: center;
   font-weight: bold;
 }
+/* Estilo básico para la tabla */
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.contact-table th, .contact-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.contact-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  color: black;
+}
+
+/* Estilo para la caja de búsqueda */
+.search-box {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

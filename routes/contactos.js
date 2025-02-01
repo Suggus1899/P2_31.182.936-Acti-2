@@ -1,15 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const ContactosController = require('../controllers/ContactosController');
+const ContactosModel = require('../models/ContactosModel');
 
-// Ruta para agregar un contacto
-router.post('/add', ContactosController.add);
+// Middleware de autenticación
+const isAuthenticated = (req, res, next) => {
+  if (req.session && req.session.user) {
+    return next();
+  }
+  res.redirect('/auth/login');
+};
 
-// Ruta de prueba para la geolocalización por IP
-router.get('/test-ip', async (req, res) => {
-  const ip = '8.8.8.8'; // IP de prueba (Google DNS)
-  const country = await ContactosController.getCountryByIp(ip); 
-  res.json({ ip, country });
+// Ruta autenticada para mostrar contactos
+router.get('/', isAuthenticated, async (req, res) => {
+  try {
+    ContactosModel.recuperarDatos((err, contactos) => {
+      if (err) {
+        return res.status(500).send('Error al recuperar datos');
+      }
+      res.render('contactos', { contactos });
+    });
+  } catch (error) {
+    res.status(500).send('Error al recuperar datos');
+  }
 });
 
 module.exports = router;

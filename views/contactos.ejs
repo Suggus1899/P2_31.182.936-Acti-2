@@ -24,41 +24,54 @@
     </script>
 </head>
 <body>
-    <header>
+    <header role="banner">
         <div class="container">
-            <h1>Contactos</h1>
+            <p class="logo">Taller los Santos</p>
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/">Inicio</a>
+                <a href="/about">Sobre nosotros</a>
+                <a href="/maintenance">Mantenimiento Preventivo</a>
+                <a href="/repairs">Reparaciones Mecánicas</a>
+                <a href="/tires">Servicio de Neumáticos</a>
+                <a href="/contact">Contacto</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <div class="container">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar por nombre o email" class="search-box">
-            <table id="contactTable" class="contact-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Comentario</th>
-                        <th>IP</th>
-                        <th>País</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% contactos.forEach(contacto => { %>
-                    <tr>
-                        <td><%= contacto.nombre %></td>
-                        <td><%= contacto.email %></td>
-                        <td><%= contacto.comentario %></td>
-                        <td><%= contacto.ip %></td>
-                        <td><%= contacto.pais %></td>
-                        <td><%= contacto.fecha_hora %></td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        </div>
+
+    <main role="main">
+        <section>
+            <div class="container">
+                <h1>Contactos</h1>
+                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar por nombre o email" class="search-box">
+                <table id="contactTable" class="contact-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Comentario</th>
+                            <th>IP</th>
+                            <th>País</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% contactos.forEach(contacto => { %>
+                        <tr>
+                            <td><%= contacto.nombre %></td>
+                            <td><%= contacto.email %></td>
+                            <td><%= contacto.comentario %></td>
+                            <td><%= contacto.ip %></td>
+                            <td><%= contacto.pais %></td>
+                            <td><%= contacto.fecha_hora %></td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </main>
-    <footer>
+
+    <footer role="contentinfo">
         <div class="container">
             <p>&copy; Taller Los Santos 2024</p>
         </div>

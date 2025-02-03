@@ -6,13 +6,37 @@
     <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
-    <h1>Registrar Usuario</h1>
-    <form action="/auth/register" method="POST">
-        <label for="username">Nombre de usuario:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br>
-        <button type="submit">Registrar</button>
-    </form>
+    <header role="banner">
+        <div class="container">
+            <p class="logo">Taller los Santos</p>
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/">Inicio</a>
+                <a href="/about">Sobre nosotros</a>
+                <a href="/maintenance">Mantenimiento Preventivo</a>
+                <a href="/repairs">Reparaciones Mecánicas</a>
+                <a href="/tires">Servicio de Neumáticos</a>
+                <a href="/contact">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main">
+        <section>
+            <h1>Registrar Usuario</h1>
+            <form action="/auth/register" method="POST">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; Taller Los Santos 2024</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,215 @@
+[33mcommit 2e4d6ea4c3cafc0d65dd3b599c56ecd4d3022bdc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mthird-parties[m[33m, [m[1;31morigin/third-parties[m[33m)[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Feb 7 21:55:40 2025 -0400
+
+    39vo Commit
+
+[33mcommit a098df7eb78544c76586588bc0b21059ab2fce31[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Mon Feb 3 19:46:10 2025 -0400
+
+    38mo Commit
+
+[33mcommit 552bf9e2b02a3598769043f4a56f11af60765184[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Feb 1 11:55:34 2025 -0400
+
+    Implementar autenticación local y con Google OAuth
+
+[33mcommit 0f5c4b89dfc706b8ca2280c3d7691dc83620c9b7[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 24 01:22:34 2025 -0400
+
+    34mo Commit
+
+[33mcommit e67b30574cfdda4bdba01e9cb551adb24c613519[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 24 01:08:25 2025 -0400
+
+    33mo Commit
+
+[33mcommit 70578eb8da3e8f337295c484926bb6b376232330[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 24 00:54:29 2025 -0400
+
+    32mo Commit
+
+[33mcommit cb3ff2c707927ff2a063d770df71f1edce740a17[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 01:14:11 2025 -0400
+
+    31mo Commit
+
+[33mcommit eb1a035657761f24d98d79205490e9b5aad5d83a[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 01:10:39 2025 -0400
+
+    30mo Commit
+
+[33mcommit d099aad22c963394da8584b6798b3d2fa2d3868f[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 01:03:08 2025 -0400
+
+    29mo Commit
+
+[33mcommit 4094de7440dbce401c90ccb08a9b53e6db341da4[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 00:52:19 2025 -0400
+
+    27mo Commit
+
+[33mcommit d2b9d53e3137a7da23d4c7d614b4bbc193ee49d0[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 00:25:37 2025 -0400
+
+    26mo Commit
+
+[33mcommit 1e78c49cf53277fc228c5ac5bb7bc16866e5bebd[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 00:21:07 2025 -0400
+
+    25mo Commit
+
+[33mcommit f117fc811bad6ba9a3c13a018106b3ed4cf9e899[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 00:18:05 2025 -0400
+
+    24mo Commit
+
+[33mcommit 7f6f2a546a62120bb76a09f454c3939f63e62830[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 00:06:22 2025 -0400
+
+    23mo Commit
+
+[33mcommit bae5c1c941d7421d2f52a18a602b74dc50f1bc2d[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sat Jan 18 00:04:44 2025 -0400
+
+    22mo Commit
+
+[33mcommit e973fd38052a5cd16adedeba610f3ba7c4b4561f[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 23:57:50 2025 -0400
+
+    21mo Commit
+
+[33mcommit ccb8a3625864d7f6aeacc94b6cf0a387d6922de0[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 23:52:54 2025 -0400
+
+    2ovo Commit
+
+[33mcommit 8a91289cf20daeb7ae3034b993494c21e7be23b3[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 23:42:02 2025 -0400
+
+    19mo Commit
+
+[33mcommit fabe1fe336ef66c4a67c1effe7365460722795f9[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 23:22:19 2025 -0400
+
+    18vo Commit
+
+[33mcommit fe92ae8504ef0eee1dcbb8e6ace382e900404955[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 23:15:33 2025 -0400
+
+    17mo Commit
+
+[33mcommit 83608eb179024cd63fefdb09e73c13e040a4a093[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 22:59:54 2025 -0400
+
+    16vo Commit
+
+[33mcommit 047c31722038f36a25405fa34df5fbefc3713e8f[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 17 21:58:44 2025 -0400
+
+    15vo Commit
+
+[33mcommit 4fba151423d65cc8002f183679faf85a6507b447[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Sun Jan 12 00:35:10 2025 -0400
+
+    14vo Commit
+
+[33mcommit b2f90e3d44ff918d527adabefe3a7e3ec3ad31bf[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Mon Jan 6 11:47:37 2025 -0400
+
+    13vo Commit
+
+[33mcommit b33591fe1b372cd07cfcbacf118bb0c23d75e797[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Mon Jan 6 10:30:46 2025 -0400
+
+    12vo Commit
+
+[33mcommit 35cdad685e63360be8b0a3946d3b27b98b1d1ca8[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 3 23:00:55 2025 -0400
+
+    11vo Commit
+
+[33mcommit 0a16d8b1ff45a6827be7cf3cf47060264200e2c3[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 3 22:52:12 2025 -0400
+
+    10mo Commit
+
+[33mcommit 29fd98423d6377f3e7efd482c988f9ba7c65ca94[m
+Author: Gustavo <gustavojose0819@gmail.com>
+Date:   Fri Jan 3 22:48:29 2025 -0400
+
+    9no Commit
+
+[33mcommit 06ae0e7053e191868b206e6bf5bcd50a900d2b10[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Sat Dec 7 11:41:45 2024 -0400
+
+    8vo Commit
+
+[33mcommit 9b420397092290c9c8863e74b0cc0ac3e8afa85c[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Sat Dec 7 11:35:48 2024 -0400
+
+    7mo Commit
+
+[33mcommit 3c840bbd75a034a7b6976af0de999ce9f51f9f46[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Sat Dec 7 11:18:16 2024 -0400
+
+    6to Commit
+
+[33mcommit fb7b2087c09162fd893ade86eb92d8bb14f5d3a7[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Sat Dec 7 10:59:42 2024 -0400
+
+    5to Commit
+
+[33mcommit a71ec45d499293a7c012c4544f93d7280809b8d8[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Fri Dec 6 19:10:34 2024 -0400
+
+    Cuarto commit
+
+[33mcommit 46b563912950400412aad08df20301115df35bc3[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Fri Dec 6 17:55:46 2024 -0400
+
+    Tercer commit
+
+[33mcommit d6e488d57ad2be66d270b4bc22d033411ebb8fe4[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Thu Dec 5 19:21:59 2024 -0400
+
+    Segundo commit
+
+[33mcommit 27433c7c58a3d8b1f237b38da28926a3bbd12cd6[m
+Author: Suggus1899 <josephgustav60@gmail.com>
+Date:   Sat Nov 16 16:50:36 2024 -0400
+
+    Mi primer commit

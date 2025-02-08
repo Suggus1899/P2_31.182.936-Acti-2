@@ -1,4 +1,4 @@
-const app = require('./app'); // Asegúrate de que 'app' está en el mismo directorio
+const app = require('./app'); 
 const http = require('http');
 
 const port = process.env.PORT || 3001;
@@ -17,7 +17,6 @@ server.on('error', (error) => {
 
   const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
-  // Manejo de errores específicos con mensajes amigables
   switch (error.code) {
     case 'EACCES':
       console.error(`${bind} requiere permisos elevados`);

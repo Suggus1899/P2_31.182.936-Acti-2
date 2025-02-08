@@ -20,11 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
-    document.querySelectorAll('#contactButton').forEach(button => {
+    document.querySelectorAll('.contactButton').forEach(button => {
         button.addEventListener('click', openModal);
     });
 
-    document.querySelector('.close-button').addEventListener('click', closeModal);
+    const closeButton = document.querySelector('.close-button');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeModal);
+    }
 
     window.onclick = function(event) {
         const modal = document.getElementById('contactModal');
@@ -33,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('show');
+        }
+    
+        document.querySelector('.nav-toggle').addEventListener('click', toggleMenu);
+    });
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -42,33 +54,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.getElementById('toggleButton').addEventListener('click', function() {
-        const extraItems = document.querySelectorAll('.extra');
-        extraItems.forEach(item => {
-            item.style.display = item.style.display === 'none' ? 'block' : 'none';
+    const toggleButton = document.getElementById('toggleButton');
+    if (toggleButton) {
+        toggleButton.addEventListener('click', function() {
+            const extraItems = document.querySelectorAll('.extra');
+            extraItems.forEach(item => {
+                item.style.display = item.style.display === 'none' ? 'block' : 'none';
+            });
+
+            this.textContent = this.textContent === 'Mostrar más' ? 'Mostrar menos' : 'Mostrar más';
         });
+    }
 
-        this.textContent = this.textContent === 'Mostrar más' ? 'Mostrar menos' : 'Mostrar más';
-    });
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
 
-    document.querySelector('form').addEventListener('submit', function(event) {
-        const email = document.getElementById('email');
-        const message = document.getElementById('message');
+            if (!validateEmail(email.value)) {
+                alert('Por favor, ingresa una dirección de correo electrónico válida.');
+                event.preventDefault();
+                return;
+            }
 
-        if (!validateEmail(email.value)) {
-            alert('Por favor, ingresa una dirección de correo electrónico válida.');
-            event.preventDefault();
-            return;
-        }
+            if (message.value.trim() === '') {
+                alert('Por favor, ingresa tu mensaje.');
+                event.preventDefault();
+                return;
+            }
 
-        if (message.value.trim() === '') {
-            alert('Por favor, ingresa tu mensaje.');
-            event.preventDefault();
-            return;
-        }
-
-        handleSubmit(event);
-    });
+            handleSubmit(event);
+        });
+    }
 
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -76,9 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleSubmit(event) {
-        event.preventDefault(); // Evita el envío real del formulario
+        event.preventDefault(); 
 
         const form = document.getElementById('contactForm');
+        if (!form) {
+            console.error('Formulario no encontrado');
+            return;
+        }
+
         const formData = new FormData(form);
         const data = {};
         formData.forEach((value, key) => {
@@ -94,17 +117,17 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(response => {
             if (response.ok) {
-                return response.json(); // Parsear la respuesta JSON
+                return response.json();
             } else {
                 return response.json().then(error => {
-                    throw new Error(error.message); // Lanzar error con el mensaje de respuesta
+                    throw new Error(error.message);
                 });
             }
         })
         .then(data => {
             console.log('Respuesta del servidor:', data.message);
             alert('Formulario enviado correctamente.');
-            window.location.href = '/thanks'; // Redirigir a la página de agradecimiento
+            window.location.href = '/thanks'; 
         })
         .catch(error => {
             console.error('Error:', error.message);
@@ -124,3 +147,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function filterTable() {
+    const filter = document.getElementById('searchInput').value.toUpperCase();
+    const table = document.getElementById('contactTable');
+    const trs = table.getElementsByTagName('tr');
+    for (let i = 1; i < trs.length; i++) {
+        let display = 'none';
+        const tds = trs[i].getElementsByTagName('td');
+        for (let j = 0; j < tds.length; j++) {
+            if (tds[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                display = '';
+                break;
+            }
+        }
+        trs[i].style.display = display;
+    }
+}

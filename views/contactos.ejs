@@ -4,24 +4,7 @@
     <meta charset="UTF-8">
     <title>Contactos</title>
     <link rel="stylesheet" href="/stylesheets/index.css">
-    <script>
-        function filterTable() {
-            const filter = document.getElementById('searchInput').value.toUpperCase();
-            const table = document.getElementById('contactTable');
-            const trs = table.getElementsByTagName('tr');
-            for (let i = 1; i < trs.length; i++) {
-                let display = 'none';
-                const tds = trs[i].getElementsByTagName('td');
-                for (let j = 0; j < tds.length; j++) {
-                    if (tds[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        display = '';
-                        break;
-                    }
-                }
-                trs[i].style.display = display;
-            }
-        }
-    </script>
+    <script src="/javascripts/scripts.js" defer></script>
 </head>
 <body>
     <header role="banner">

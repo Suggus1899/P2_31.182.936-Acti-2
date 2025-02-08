@@ -30,10 +30,9 @@ const ContactosController = {
   add: async function(req, res) {
     const { nombre, email, comentario, 'g-recaptcha-response': recaptchaResponse } = req.body;
     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    ip = ip.split(',')[0]; // Usar solo la primera IP
+    ip = ip.split(',')[0]; 
     const fecha_hora = moment().tz('America/Caracas').format('YYYY-MM-DD HH:mm:ss');
 
-    // Verificar reCAPTCHA
     const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse, ip);
     if (!isRecaptchaValid) {
       return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
@@ -51,7 +50,6 @@ const ContactosController = {
         return res.status(500).json({ message: "No se pudo obtener el país." });
       }
 
-      // Guardar datos en la base de datos
       model.guardarDatos(nombre, email, comentario, ip, fecha_hora, country, (err) => {
         if (err) {
           console.error("Error al guardar los datos:", err.message);
@@ -59,7 +57,6 @@ const ContactosController = {
         }
         console.log("Datos guardados correctamente:", { nombre, email, comentario, ip, fecha_hora, country });
 
-        // Configurar el transporte de correo
         const transporter = nodemailer.createTransport({
           service: 'Gmail',
           auth: {
@@ -68,7 +65,6 @@ const ContactosController = {
           }
         });
 
-        // Configurar el contenido del correo electrónico
         const mailOptions = {
           from: emailUser,
           to: emailRecipients,
@@ -82,8 +78,7 @@ const ContactosController = {
             País: ${country}
             Fecha y hora: ${fecha_hora}`
         };
-
-        // Enviar el correo electrónico
+        
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             console.error('Error al enviar el correo electrónico:', error);

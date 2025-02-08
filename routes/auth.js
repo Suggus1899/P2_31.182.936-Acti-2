@@ -1,42 +1,60 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const UserModel = require('../models/UserModel');
 
-// Ruta de registro (solo accesible para administradores)
+router.get('/options', (req, res) => {
+    res.render('auth-options');
+});
+
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/contactos',
+    failureRedirect: '/auth/login',
+    failureFlash: true
+}));
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
 router.get('/register', (req, res) => {
-  res.render('register');
+    res.render('register');
 });
 
 router.post('/register', (req, res) => {
-  const { username, password } = req.body;
-  UserModel.registrarUsuario(username, password, (err, result) => {
-    if (err) {
-      return res.status(500).send('Error al registrar usuario');
-    }
-    res.redirect('/auth/login');
-  });
+    const { username, password } = req.body;
+    UserModel.registrarUsuario(username, password, (err) => {
+        if (err) {
+            return res.status(500).send('Error al registrar usuario');
+        }
+        res.redirect('/auth/login');
+    });
 });
 
-// Ruta de login
-router.get('/login', (req, res) => {
-  res.render('login');
+// Rutas para autenticación con Google
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/auth/login' }),
+    (req, res) => {
+        res.redirect('/contactos');
+    });
+
+// Mostrar el formulario de inicio de sesión de administrador
+router.get('/admin', (req, res) => {
+    res.render('admin-login');
 });
 
-router.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  UserModel.autenticarUsuario(username, password, (err, user) => {
-    if (err) {
-      return res.status(401).send('Usuario o contraseña incorrectos');
-    }
-    req.session.user = user;
-    res.redirect('/contactos');
-  });
-});
-
-// Ruta de logout
-router.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/auth/login');
-});
+// Inicio de sesión de administrador
+router.post('/admin/login', passport.authenticate('local', {
+    successRedirect: '/admin/dashboard',
+    failureRedirect: '/auth/admin',
+    failureFlash: true
+}));
 
 module.exports = router;

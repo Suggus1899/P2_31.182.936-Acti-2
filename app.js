@@ -9,6 +9,7 @@ const routes = require('./routes/routes');
 const contactosRouter = require('./routes/contactos');
 const authRouter = require('./routes/auth');
 const session = require('express-session');
+const passport = require('./config/passport');
 
 const app = express();
 
@@ -23,6 +24,10 @@ app.use(session({
     maxAge: 15 * 60 * 1000 // 15 minutos
   }
 }));
+
+// Inicializar Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Configuración del motor de plantillas EJS
 app.set('views', path.join(__dirname, 'views'));

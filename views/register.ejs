@@ -21,16 +21,18 @@
     </header>
 
     <main role="main">
-        <section>
-            <h1>Registrar Usuario</h1>
-            <form action="/auth/register" method="POST">
+        <div class="register-container">
+            <form class="register-form" action="/auth/register" method="POST">
+                <h1>Registrar Usuario</h1>
                 <label for="username">Nombre de usuario:</label>
-                <input type="text" id="username" name="username" required><br>
+                <input type="text" id="username" name="username" placeholder="Escribe tu nombre de usuario" required>
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required><br>
+                <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" required>
+                <label for="confirm-password">Confirmar Contraseña:</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirma tu contraseña" required>
                 <button type="submit">Registrar</button>
             </form>
-        </section>
+        </div>
     </main>
 
     <footer role="contentinfo">

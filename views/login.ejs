@@ -6,22 +6,38 @@
     <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
-    <header>
+    <header role="banner">
         <div class="container">
-            <h1>Iniciar Sesión</h1>
+            <p class="logo">Taller los Santos</p>
+            <nav class="nav-menu" aria-label="Main Navigation">
+                <a href="/">Inicio</a>
+                <a href="/about">Sobre nosotros</a>
+                <a href="/maintenance">Mantenimiento Preventivo</a>
+                <a href="/repairs">Reparaciones Mecánicas</a>
+                <a href="/tires">Servicio de Neumáticos</a>
+                <a href="/contact">Contacto</a>
+            </nav>
         </div>
     </header>
-    <main>
-        <div class="container">
-            <form action="/auth/login" method="POST">
+
+    <main role="main">
+        <div class="login-container">
+            <form class="login-form" action="/auth/login" method="POST">
+                <h1>Iniciar Sesión</h1>
                 <label for="username">Usuario:</label>
-                <input type="text" id="username" name="username" required><br>
+                <input type="text" id="username" name="username" placeholder="Escribe tu nombre de usuario" required>
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required><br>
+                <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" required>
                 <button type="submit">Ingresar</button>
                 <a href="/auth/google" class="google-login">Iniciar con Google</a>
             </form>
         </div>
     </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; Taller Los Santos 2024</p>
+        </div>
+    </footer>
 </body>
 </html>

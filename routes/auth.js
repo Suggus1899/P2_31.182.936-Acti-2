@@ -45,12 +45,12 @@ router.get('/google/callback',
         res.redirect('/contactos');
     });
 
-// Mostrar el formulario de inicio de sesión de administrador
+// Ruta para mostrar el formulario de inicio de sesión de administrador
 router.get('/admin', (req, res) => {
     res.render('admin-login');
 });
 
-// Inicio de sesión de administrador
+// Ruta para procesar el inicio de sesión de administrador
 router.post('/admin/login', passport.authenticate('local', {
     successRedirect: '/admin/dashboard',
     failureRedirect: '/auth/admin',

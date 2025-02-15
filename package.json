@@ -20,6 +20,7 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "moment-timezone": "^0.5.46",
+    "mongoose": "^8.10.1",
     "morgan": "~1.9.1",
     "myapp": "file:",
     "nodemailer": "^6.9.16",

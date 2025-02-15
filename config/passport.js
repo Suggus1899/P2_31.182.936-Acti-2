@@ -1,50 +1,36 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const Schema = mongoose.Schema;
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const UserModel = require('../models/UserModel');
 
-const UserSchema = new Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    googleId: { type: String, unique: true, sparse: true } // Campo para autenticación con Google
+// Autenticación local
+passport.use(new LocalStrategy((username, password, done) => {
+    UserModel.autenticarUsuario(username, password, (err, user) => {
+        if (err) return done(err);
+        if (!user) return done(null, false, { message: 'Usuario o contraseña incorrectos' });
+        return done(null, user);
+    });
+}));
+
+// Autenticación con Google
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "/auth/google/callback"
+}, (accessToken, refreshToken, profile, done) => {
+    UserModel.findOrCreateGoogleUser(profile, (err, user) => {
+        return done(err, user);
+    });
+}));
+
+passport.serializeUser((user, done) => {
+    done(null, user.id);
 });
 
-// Método para registrar usuario
-UserSchema.statics.registrarUsuario = async function(username, password, callback) {
-    const hash = await bcrypt.hash(password, 10);
-    const user = new this({ username, password: hash });
-    user.save(callback);
-};
-
-// Método para autenticar usuario
-UserSchema.statics.autenticarUsuario = function(username, password, callback) {
-    this.findOne({ username }, async (err, user) => {
-        if (err) return callback(err);
-        if (!user) return callback(null, false);
-        const isMatch = await bcrypt.compare(password, user.password);
-        return callback(null, isMatch ? user : false);
+passport.deserializeUser((id, done) => {
+    UserModel.getUserById(id, (err, user) => {
+        done(err, user);
     });
-};
+});
 
-// Método para encontrar o crear un usuario con Google
-UserSchema.statics.findOrCreateGoogleUser = function(profile, callback) {
-    this.findOne({ googleId: profile.id }, (err, user) => {
-        if (err) return callback(err);
-        if (user) {
-            return callback(null, user);
-        } else {
-            const newUser = new this({
-                username: profile.displayName,
-                googleId: profile.id
-            });
-            newUser.save(callback);
-        }
-    });
-};
-
-// Método para obtener usuario por ID
-UserSchema.statics.getUserById = function(id, callback) {
-    this.findById(id, callback);
-};
-
-const UserModel = mongoose.model('User', UserSchema);
-module.exports = UserModel;
+module.exports = passport;

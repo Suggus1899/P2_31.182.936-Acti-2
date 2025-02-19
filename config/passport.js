@@ -16,7 +16,7 @@ passport.use(new LocalStrategy((username, password, done) => {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/auth/google/callback"
+    callbackURL: "https://p2-31-182-936-acti-2.onrender.com/auth/google/callback"
 }, (accessToken, refreshToken, profile, done) => {
     UserModel.findOrCreateGoogleUser(profile, (err, user) => {
         return done(err, user);

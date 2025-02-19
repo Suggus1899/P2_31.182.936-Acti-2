@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const UserModel = require('../models/UserModel');
+const ensureAdmin = require('../middlewares/ensureAdmin');
 
 router.get('/options', (req, res) => {
     res.render('auth-options');
@@ -56,5 +57,21 @@ router.post('/admin/login', passport.authenticate('local', {
     failureRedirect: '/auth/admin',
     failureFlash: true
 }));
+
+// Rutas para autenticación con Google para administradores
+router.get('/admin/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/admin/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/auth/admin' }),
+    (req, res) => {
+        res.redirect('/admin/dashboard');
+    });
+
+// Ruta para mostrar los contactos al administrador
+const contactos = [ /* aquí irían los datos reales de contactos */ ];
+
+router.get('/admin/contactos', ensureAdmin, (req, res) => {
+    res.render('admin-contactos', { contactos });
+});
 
 module.exports = router;

@@ -20,6 +20,7 @@ class UserModel {
                 username TEXT UNIQUE,
                 password_hash TEXT,
                 google_id TEXT,
+                role TEXT DEFAULT 'user',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `;
@@ -32,10 +33,10 @@ class UserModel {
         });
     }
 
-    registrarUsuario(username, password, callback) {
+    registrarUsuario(username, password, role = 'user', callback) {
         const password_hash = bcrypt.hashSync(password, 10);
-        const sql = `INSERT INTO users (username, password_hash) VALUES (?, ?)`;
-        this.db.run(sql, [username, password_hash], function(err) {
+        const sql = `INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)`;
+        this.db.run(sql, [username, password_hash, role], function(err) {
             if (err) {
                 callback(err);
                 return;

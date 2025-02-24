@@ -38,8 +38,7 @@ class UserModel {
         const sql = `INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)`;
         this.db.run(sql, [username, password_hash, role], function(err) {
             if (err) {
-                callback(err);
-                return;
+                return callback(err);
             }
             callback(null, { id: this.lastID });
         });
@@ -76,12 +75,13 @@ class UserModel {
             if (row) {
                 return callback(null, row);
             } else {
-                const sqlInsert = `INSERT INTO users (username, google_id) VALUES (?, ?)`;
-                this.db.run(sqlInsert, [profile.displayName, profile.id], function(err) {
+                const sqlInsert = `INSERT INTO users (username, google_id, role) VALUES (?, ?, ?)`;
+                const role = profile.email.endsWith('@tudominio.com') ? 'admin' : 'user';
+                this.db.run(sqlInsert, [profile.displayName, profile.id, role], function(err) {
                     if (err) {
                         return callback(err);
                     }
-                    callback(null, { id: this.lastID, username: profile.displayName, google_id: profile.id });
+                    callback(null, { id: this.lastID, username: profile.displayName, google_id: profile.id, role: role });
                 });
             }
         });

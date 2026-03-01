@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Casos de Éxito' }) %>
+        <style>
+            .case-study {
+                border: 1px solid var(--border-dark);
+                border-radius: var(--radius-lg);
+                overflow: hidden;
+                background: var(--bg-tertiary);
+                margin-bottom: var(--spacing-xxl);
+            }
+
+            .case-header {
+                padding: var(--spacing-lg);
+                border-bottom: 1px solid var(--border-dark);
+            }
+
+            .case-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-lg);
+                padding: var(--spacing-lg);
+            }
+
+            @media (max-width: 768px) {
+                .case-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .before-after-label {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 5px 10px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+            }
+
+            .img-wrapper {
+                position: relative;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">Transformaciones</span>
+                    <h1>Casos de <span class="text-gradient">Éxito</span></h1>
+                    <p>Resultados reales en vehículos reales. Así recuperamos el rendimiento.</p>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+
+                    <!-- CASE 1 -->
+                    <article class="case-study">
+                        <div class="case-header">
+                            <h2>Toyota Corolla - Restauración de Motor</h2>
+                            <p class="text-muted">Servicio: Ajuste Completo de Motor | Duración: 2 semanas</p>
+                        </div>
+                        <div class="case-grid">
+                            <div class="case-details">
+                                <h3>El Problema</h3>
+                                <p>El cliente reportó pérdida severa de potencia, consumo excesivo de aceite y humo
+                                    azul. El vehículo tenía 350,000 km sin intervenciones mayores.</p>
+
+                                <h3>La Solución</h3>
+                                <ul class="feature-list">
+                                    <li>✅ Desarmado completo del bloque</li>
+                                    <li>✅ Rectificación de cilindros y cigüeñal</li>
+                                    <li>✅ Pistones y anillos nuevos medida 0.20</li>
+                                    <li>✅ Reemplazo de bomba de aceite y agua</li>
+                                </ul>
+
+                                <h3>El Resultado</h3>
+                                <p>Compresión restaurada a valores de fábrica (175 PSI). El motor funciona suave, sin
+                                    humo y con potencia renovada.</p>
+                            </div>
+                            <div class="case-images">
+                                <div class="img-wrapper" style="margin-bottom: 10px;">
+                                    <img src="images/Maintenance.jpg" alt="Motor Antes"
+                                        style="width: 100%; border-radius: var(--radius-md); filter: grayscale(1);">
+                                    <span class="before-after-label">ANTES</span>
+                                </div>
+                                <div class="img-wrapper">
+                                    <img src="images/Repairs.jpg" alt="Motor Despues"
+                                        style="width: 100%; border-radius: var(--radius-md);">
+                                    <span class="before-after-label"
+                                        style="background: var(--color-accent);">DESPUÉS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CASE 2 -->
+                    <article class="case-study">
+                        <div class="case-header">
+                            <h2>Ford Explorer - Diagnóstico Electrónico Complejo</h2>
+                            <p class="text-muted">Servicio: Diagnóstico Avanzado | Duración: 3 días</p>
+                        </div>
+                        <div class="case-grid">
+                            <div class="case-details">
+                                <h3>El Problema</h3>
+                                <p>Falla intermitente que apagaba el vehículo en marcha. Había visitado 3 talleres
+                                    anteriores sin solución. "Cambia piezas" previos no resolvieron nada.</p>
+
+                                <h3>La Solución</h3>
+                                <ul class="feature-list">
+                                    <li>✅ Monitoreo en vivo con osciloscopio</li>
+                                    <li>✅ Detección de caída de voltaje en ramal principal</li>
+                                    <li>✅ Reparación de cableado sulfatado en conector PCM</li>
+                                    <li>✅ Reprogramación de módulo</li>
+                                </ul>
+
+                                <h3>El Resultado</h3>
+                                <p>Cero fallas después de 1 mes de prueba. El cliente recuperó la confianza en su
+                                    vehículo familiar.</p>
+                            </div>
+                            <div class="case-images">
+                                <div class="img-wrapper">
+                                    <img src="images/About.jpg" alt="Diagnostico"
+                                        style="width: 100%; border-radius: var(--radius-md);">
+                                    <span class="before-after-label"
+                                        style="background: var(--color-primary);">PROCESO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

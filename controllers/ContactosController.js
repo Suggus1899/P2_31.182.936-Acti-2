@@ -1,9 +1,11 @@
 const { ContactosModel } = require('../models/ContactosModel');
 const { getCountryByIp } = require('../models/getCountryByIp');
-const model = new ContactosModel(); 
+const model = new ContactosModel();
 const axios = require('axios');
 const moment = require('moment-timezone');
 const nodemailer = require('nodemailer');
+const { body, validationResult } = require('express-validator'); // Importar express-validator
+
 const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
 const emailUser = process.env.EMAIL_USER;
 const emailPass = process.env.EMAIL_PASS;
@@ -27,77 +29,90 @@ const verifyRecaptcha = async (recaptchaResponse, ip) => {
 };
 
 const ContactosController = {
-  add: async function(req, res) {
-    const { nombre, email, comentario, 'g-recaptcha-response': recaptchaResponse } = req.body;
-    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    ip = ip.split(',')[0]; // Usar solo la primera IP
-    const fecha_hora = moment().tz('America/Caracas').format('YYYY-MM-DD HH:mm:ss');
+  add: [
+    // Reglas de validación y sanitización
+    body('nombre').trim().notEmpty().withMessage('El nombre es obligatorio.')
+      .isLength({ max: 50 }).withMessage('El nombre no puede exceder los 50 caracteres.')
+      .escape(), // Sanitizar para prevenir XSS
+    body('email').trim().notEmpty().withMessage('El correo electrónico es obligatorio.')
+      .isEmail().withMessage('Debe ser un correo electrónico válido.')
+      .normalizeEmail(), // Normalizar el correo electrónico
+    body('comentario').trim().notEmpty().withMessage('El comentario es obligatorio.')
+      .isLength({ max: 500 }).withMessage('El comentario no puede exceder los 500 caracteres.')
+      .escape(), // Sanitizar para prevenir XSS
 
-    // Verificar reCAPTCHA
-    const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse, ip);
-    if (!isRecaptchaValid) {
-      return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
-    }
-
-    if (!nombre || !email || !comentario) {
-      console.error("Error: Todos los campos son obligatorios.");
-      return res.status(400).json({ message: "Todos los campos son obligatorios." });
-    }
-
-    try {
-      const country = await getCountryByIp(ip);
-      if (!country) {
-        console.error("Error: No se pudo obtener el país.");
-        return res.status(500).json({ message: "No se pudo obtener el país." });
+    async function(req, res) {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
       }
 
-      // Guardar datos en la base de datos
-      model.guardarDatos(nombre, email, comentario, ip, fecha_hora, country, (err) => {
-        if (err) {
-          console.error("Error al guardar los datos:", err.message);
-          return res.status(500).json({ message: "Error al guardar los datos." });
+      const { nombre, email, comentario, 'g-recaptcha-response': recaptchaResponse } = req.body;
+      let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      ip = ip.split(',')[0]; // Usar solo la primera IP
+      const fecha_hora = moment().tz('America/Caracas').format('YYYY-MM-DD HH:mm:ss');
+
+      // Verificar reCAPTCHA
+      const isRecaptchaValid = await verifyRecaptcha(recaptchaResponse, ip);
+      if (!isRecaptchaValid) {
+        return res.status(400).json({ message: "Por favor, completa el reCAPTCHA." });
+      }
+
+      try {
+        const country = await getCountryByIp(ip);
+        if (!country) {
+          console.error("Error: No se pudo obtener el país.");
+          return res.status(500).json({ message: "No se pudo obtener el país." });
         }
-        console.log("Datos guardados correctamente:", { nombre, email, comentario, ip, fecha_hora, country });
 
-        // Configurar el transporte de correo
-        const transporter = nodemailer.createTransport({
-          service: 'Gmail',
-          auth: {
-            user: emailUser,
-            pass: emailPass
+        // Guardar datos en la base de datos
+        model.guardarDatos(nombre, email, comentario, ip, fecha_hora, country, (err) => {
+          if (err) {
+            console.error("Error al guardar los datos:", err.message);
+            return res.status(500).json({ message: "Error al guardar los datos." });
           }
-        });
+          console.log("Datos guardados correctamente:", { nombre, email, comentario, ip, fecha_hora, country });
 
-        // Configurar el contenido del correo electrónico
-        const mailOptions = {
-          from: emailUser,
-          to: emailRecipients,
-          subject: 'Nuevo mensaje de contacto',
-          text: `
-            Has recibido un nuevo mensaje de contacto:
-            Nombre: ${nombre}
-            Correo electrónico: ${email}
-            Comentario: ${comentario}
-            Dirección IP: ${ip}
-            País: ${country}
-            Fecha y hora: ${fecha_hora}`
-        };
+          // Configurar el transporte de correo
+          const transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+              user: emailUser,
+              pass: emailPass
+            }
+          });
 
-        // Enviar el correo electrónico
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            console.error('Error al enviar el correo electrónico:', error);
-            return res.status(500).json({ message: 'Error al enviar el correo electrónico.' });
-          }
-          console.log('Correo electrónico enviado:', info.response);
-          return res.status(200).json({ message: 'Datos guardados y correo electrónico enviado correctamente.' });
+          // Configurar el contenido del correo electrónico
+          const mailOptions = {
+            from: emailUser,
+            to: emailRecipients,
+            subject: 'Nuevo mensaje de contacto',
+            text: `
+              Has recibido un nuevo mensaje de contacto:
+              Nombre: ${nombre}
+              Correo electrónico: ${email}
+              Comentario: ${comentario}
+              Dirección IP: ${ip}
+              País: ${country}
+              Fecha y hora: ${fecha_hora}`
+          };
+
+          // Enviar el correo electrónico
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.error('Error al enviar el correo electrónico:', error);
+              return res.status(500).json({ message: 'Error al enviar el correo electrónico.' });
+            }
+            console.log('Correo electrónico enviado:', info.response);
+            return res.status(200).json({ message: 'Datos guardados y correo electrónico enviado correctamente.' });
+          });
         });
-      });
-    } catch (error) {
-      console.error("Error al obtener el país:", error.message);
-      return res.status(500).json({ message: "Error al obtener el país." });
+      } catch (error) {
+        console.error("Error al obtener el país:", error.message);
+        return res.status(500).json({ message: "Error al obtener el país." });
+      }
     }
-  }
+  ]
 };
 
 module.exports = ContactosController;

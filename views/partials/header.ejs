@@ -1,0 +1,36 @@
+<!-- Header with Navigation -->
+<header role="banner">
+    <div class="container">
+        <p class="logo">Taller Los Santos</p>
+        <nav aria-label="Main Navigation">
+            <button class="nav-toggle" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
+            <div class="nav-menu">
+                <a href="/">Inicio</a>
+                <a href="/about">Nosotros</a>
+                <div class="dropdown">
+                    <button class="dropbtn" aria-label="Servicios">Servicios ⬇</button>
+                    <div class="dropdown-content">
+                        <a href="/maintenance">Mantenimiento</a>
+                        <a href="/repairs">Reparaciones</a>
+                        <a href="/diagnosis">Diagnóstico</a>
+                        <a href="/ac-service">Aire Acondicionado</a>
+                        <a href="/brakes">Frenos</a>
+                        <a href="/tires">Neumáticos</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn" aria-label="Extras">Más ⬇</button>
+                    <div class="dropdown-content">
+                        <a href="/gallery">Galería</a>
+                        <a href="/success-stories">Casos de Éxito</a>
+                        <a href="/reviews">Testimonios</a>
+                        <a href="/shop">Tienda</a>
+                    </div>
+                </div>
+                <a href="/blog">Blog</a>
+                <a href="/promotions" style="color: var(--color-accent);">Promos</a>
+                <a href="/quote" class="btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">Cotizar</a>
+            </div>
+        </nav>
+    </div>
+</header>

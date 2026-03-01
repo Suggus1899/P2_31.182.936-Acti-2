@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Testimonios' }) %>
+        <style>
+            .review-card {
+                background: var(--bg-tertiary);
+                padding: var(--spacing-lg);
+                border-radius: var(--radius-lg);
+                margin-bottom: var(--spacing-md);
+                border-left: 5px solid var(--color-accent);
+            }
+
+            .stars {
+                color: #ffd700;
+                font-size: 1.2rem;
+            }
+
+            .reviewer-name {
+                font-weight: bold;
+                margin-top: 10px;
+                color: white;
+            }
+
+            .review-date {
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">Opiniones</span>
+                    <h1>Lo que dicen <span class="text-gradient">Nuestros Clientes</span></h1>
+                    <p>Nuestra mayor satisfacción es la confianza de nuestra comunidad.</p>
+                    <div style="font-size: 3rem; margin: 20px 0;">
+                        4.9 <span class="stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>Basado en 250+ reseñas en Google</p>
+                    <a href="#" class="btn-primary">Dejar una Reseña</a>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="masonry-grid" style="column-count: 1; column-gap: 20px;">
+                        <!-- Reviews would ideally be fetched from an API, hardcoded for now -->
+                        <div class="review-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Excelente servicio. Lleve mi Aveo por un ruido que nadie encontraba y ellos dieron con
+                                la falla en una hora. Muy honestos con el precio."</p>
+                            <div class="reviewer-name">Carlos Rodriguez</div>
+                            <div class="review-date">Hace 2 días</div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"La atención de primera. Me explicaron todo con detalle y me mostraron las piezas
+                                cambiadas. El taller es impecable, parece un laboratorio. 100% recomendados."</p>
+                            <div class="reviewer-name">Maria Fernanda Gonzalez</div>
+                            <div class="review-date">Hace 1 semana</div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Son los mejores en Tuning. Me instalaron una suspensión deportiva y quedó perfecta.
+                                Saben lo que hacen."</p>
+                            <div class="reviewer-name">Jose Luis Perez</div>
+                            <div class="review-date">Hace 3 semanas</div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">⭐⭐⭐⭐☆</div>
+                            <p>"Muy buen trabajo, aunque tardaron un poco más de lo esperado porque esperaban un
+                                repuesto. Pero valió la pena la espera, el carro quedó nuevo."</p>
+                            <div class="reviewer-name">Andres Martinez</div>
+                            <div class="review-date">Hace 1 mes</div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"El sistema de citas online es lo máximo. Llegué y me atendieron de una vez. Nada de
+                                hacer cola desde la madrugada."</p>
+                            <div class="reviewer-name">Ana Paola Diaz</div>
+                            <div class="review-date">Hace 2 meses</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

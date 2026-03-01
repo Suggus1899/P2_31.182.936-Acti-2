@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Venta de Repuestos' }) %>
+        <style>
+            .part-card {
+                display: flex;
+                background: var(--bg-tertiary);
+                border-radius: var(--radius-md);
+                margin-bottom: var(--spacing-md);
+                overflow: hidden;
+                border: 1px solid var(--border-dark);
+            }
+
+            .part-img {
+                width: 150px;
+                background: #333;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+            }
+
+            .part-info {
+                padding: var(--spacing-md);
+                flex: 1;
+            }
+
+            .part-price {
+                color: var(--color-accent);
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+
+            .stock-badge {
+                background: #00e676;
+                color: black;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">O.E.M.</span>
+                    <h1>Venta de <span class="text-gradient">Repuestos</span></h1>
+                    <p>Piezas originales y certificadas para el mejor rendimiento.</p>
+
+                    <div style="max-width: 600px; margin: 30px auto; display: flex;">
+                        <input type="text" placeholder="Buscar repuesto (ej: Filtro Aceite Corolla 2015)"
+                            style="flex: 1; padding: 15px; border: none; border-radius: 5px 0 0 5px; outline: none;">
+                        <button class="btn-primary" style="border-radius: 0 5px 5px 0;">Buscar</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="grid">
+
+                        <div class="part-card">
+                            <div class="part-img">🛢️</div>
+                            <div class="part-info">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <h3>Aceite Sintético 5W-30 (5L)</h3>
+                                    <div class="part-price">$45.00</div>
+                                </div>
+                                <p>Marca: Motul | Ref: 8100 X-Clean</p>
+                                <span class="stock-badge">En Stock</span>
+                                <button class="btn-outline" style="float: right; padding: 5px 15px;">Ver
+                                    Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="part-card">
+                            <div class="part-img">🔋</div>
+                            <div class="part-info">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <h3>Batería Duncan 800 Amp</h3>
+                                    <div class="part-price">$120.00</div>
+                                </div>
+                                <p>Garantía: 12 Meses | Ref: 24R-800</p>
+                                <span class="stock-badge">En Stock</span>
+                                <button class="btn-outline" style="float: right; padding: 5px 15px;">Ver
+                                    Detalles</button>
+                            </div>
+                        </div>
+
+                        <div class="part-card">
+                            <div class="part-img">🛑</div>
+                            <div class="part-info">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <h3>Juego de Pastillas Delanteras</h3>
+                                    <div class="part-price">$35.00</div>
+                                </div>
+                                <p>Cerámica | Aplica: Toyota, Chevrolet, Ford</p>
+                                <span class="stock-badge">En Stock</span>
+                                <button class="btn-outline" style="float: right; padding: 5px 15px;">Ver
+                                    Detalles</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

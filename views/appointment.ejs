@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Agendar Cita' }) %>
+        <style>
+            .appointment-form {
+                max-width: 600px;
+                margin: 0 auto;
+                background: var(--bg-tertiary);
+                padding: var(--spacing-lg);
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border-dark);
+            }
+
+            .form-group {
+                margin-bottom: var(--spacing-md);
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--text-primary);
+                font-weight: 600;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px 15px;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-light);
+                border-radius: var(--radius-sm);
+                color: white;
+                font-size: 1rem;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus {
+                outline: none;
+                border-color: var(--color-accent);
+            }
+
+            .time-slots {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+
+            .time-slot {
+                padding: 10px;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-light);
+                border-radius: var(--radius-sm);
+                text-align: center;
+                cursor: pointer;
+                transition: all var(--transition-fast);
+            }
+
+            .time-slot:hover,
+            .time-slot.selected {
+                border-color: var(--color-accent);
+                background: rgba(213, 0, 249, 0.1);
+            }
+
+            .time-slot.unavailable {
+                opacity: 0.3;
+                pointer-events: none;
+                text-decoration: line-through;
+            }
+
+            .confirmation-box {
+                display: none;
+                text-align: center;
+                padding: var(--spacing-lg);
+            }
+
+            .confirmation-box.show {
+                display: block;
+            }
+
+            .confirmation-icon {
+                font-size: 4rem;
+                margin-bottom: var(--spacing-md);
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Reserva Online</span>
+                    <h1>Agendar <span class="text-gradient">Cita</span></h1>
+                    <p>Selecciona el día y hora que mejor te convenga. Sin esperas.</p>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="appointment-form" id="appointmentForm">
+                        <div class="form-group">
+                            <label>Nombre completo</label>
+                            <input type="text" id="clientName" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="tel" id="clientPhone" placeholder="+58 412 XXX XXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="clientEmail" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Servicio</label>
+                            <select id="serviceType">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="maintenance">Mantenimiento Preventivo</option>
+                                <option value="repair">Reparación Mecánica</option>
+                                <option value="tires">Neumáticos y Alineación</option>
+                                <option value="diagnosis">Diagnóstico</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" id="appointmentDate" min="" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hora disponible</label>
+                            <div class="time-slots" id="timeSlots">
+                                <div class="time-slot" data-time="08:00">8:00 AM</div>
+                                <div class="time-slot" data-time="09:00">9:00 AM</div>
+                                <div class="time-slot" data-time="10:00">10:00 AM</div>
+                                <div class="time-slot" data-time="11:00">11:00 AM</div>
+                                <div class="time-slot unavailable" data-time="12:00">12:00 PM</div>
+                                <div class="time-slot" data-time="14:00">2:00 PM</div>
+                                <div class="time-slot" data-time="15:00">3:00 PM</div>
+                                <div class="time-slot" data-time="16:00">4:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Notas adicionales (opcional)</label>
+                            <textarea id="notes" rows="3"
+                                placeholder="Describe brevemente el problema o lo que necesitas..."></textarea>
+                        </div>
+                        <button type="button" onclick="submitAppointment()" class="btn-primary"
+                            style="width: 100%;">Confirmar Cita</button>
+                    </div>
+
+                    <div class="confirmation-box" id="confirmationBox">
+                        <div class="confirmation-icon">✅</div>
+                        <h2>¡Cita Agendada!</h2>
+                        <p style="font-size: 1.25rem; margin: var(--spacing-md) 0;">
+                            Te esperamos el <strong id="confirmedDate"></strong> a las <strong
+                                id="confirmedTime"></strong>
+                        </p>
+                        <p style="color: var(--text-secondary);">Recibirás un recordatorio por WhatsApp 24 horas antes.
+                        </p>
+                        <a href="/" class="btn-outline" style="margin-top: var(--spacing-md);">Volver al Inicio</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+
+                <script>
+                    // Set minimum date to today
+                    const today = new Date().toISOString().split('T')[0];
+                    document.getElementById('appointmentDate').setAttribute('min', today);
+
+                    let selectedTime = null;
+
+                    // Time slot selection
+                    document.querySelectorAll('.time-slot:not(.unavailable)').forEach(slot => {
+                        slot.addEventListener('click', function () {
+                            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+                            this.classList.add('selected');
+                            selectedTime = this.dataset.time;
+                        });
+                    });
+
+                    function submitAppointment() {
+                        const name = document.getElementById('clientName').value;
+                        const phone = document.getElementById('clientPhone').value;
+                        const email = document.getElementById('clientEmail').value;
+                        const service = document.getElementById('serviceType').value;
+                        const date = document.getElementById('appointmentDate').value;
+
+                        if (!name || !phone || !email || !service || !date || !selectedTime) {
+                            alert('Por favor completa todos los campos y selecciona una hora.');
+                            return;
+                        }
+
+                        // Format date for display
+                        const dateObj = new Date(date + 'T' + selectedTime);
+                        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                        const formattedDate = dateObj.toLocaleDateString('es-VE', options);
+
+                        // Format time
+                        const hours = parseInt(selectedTime.split(':')[0]);
+                        const ampm = hours >= 12 ? 'PM' : 'AM';
+                        const displayHour = hours > 12 ? hours - 12 : hours;
+                        const formattedTime = displayHour + ':00 ' + ampm;
+
+                        // Show confirmation
+                        document.getElementById('confirmedDate').textContent = formattedDate;
+                        document.getElementById('confirmedTime').textContent = formattedTime;
+                        document.getElementById('appointmentForm').style.display = 'none';
+                        document.getElementById('confirmationBox').classList.add('show');
+                    }
+                </script>
+</body>
+
+</html>

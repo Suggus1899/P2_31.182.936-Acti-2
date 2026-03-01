@@ -1,0 +1,46 @@
+<!-- Configuración del Head - Meta tags, estilos y scripts comunes -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+    <%= typeof title !=='undefined' ? title + ' | ' : '' %>Taller Los Santos
+</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@700;800&display=swap"
+    rel="stylesheet">
+
+<!-- SEO Meta Tags -->
+<meta name="description"
+    content="Taller Mecánico Los Santos en Cagua, Estado Aragua. Ofrecemos servicios de mantenimiento y reparación de vehículos con más de 20 años de experiencia.">
+<meta name="keywords"
+    content="taller mecánico, mantenimiento de vehículos, reparación de autos, Cagua, Aragua, Venezuela">
+<meta name="author" content="Taller Los Santos">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Taller Los Santos - Servicios Mecánicos en Cagua">
+<meta property="og:description"
+    content="Taller Mecánico Los Santos en Cagua, Estado Aragua. Ofrecemos servicios de mantenimiento y reparación de vehículos con más de 20 años de experiencia.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon (opcional - agregar si tienes uno) -->
+<!-- <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> -->
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="/stylesheets/index.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D4MZ2VB0K3"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D4MZ2VB0K3');
+</script>
+
+<!-- Google reCAPTCHA (solo para páginas con formularios de contacto) -->
+<% if (typeof includeRecaptcha !=='undefined' && includeRecaptcha) { %>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <% } %>

@@ -7,20 +7,22 @@
     "create-table": "node createTable.js"
   },
   "dependencies": {
+    "@dr.pogodin/csurf": "^1.16.8",
     "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "express": "~4.16.1",
-    "express-ip": "^1.0.4",
-    "googleapis": "^144.0.0",
+    "express": "^4.22.1",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.3.1",
+    "googleapis": "^171.4.0",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "moment-timezone": "^0.5.46",
-    "morgan": "~1.9.1",
+    "morgan": "^1.10.1",
     "myapp": "file:",
-    "nodemailer": "^6.9.16",
-    "sqlite3": "^5.1.7"
+    "nodemailer": "^8.0.1",
+    "sqlite3": "^5.0.2"
   }
 }

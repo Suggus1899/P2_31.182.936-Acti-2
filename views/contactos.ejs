@@ -1,67 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Contactos</title>
-    <link rel="stylesheet" href="/stylesheets/index.css">
-    <script>
-        function filterTable() {
-            const filter = document.getElementById('searchInput').value.toUpperCase();
-            const table = document.getElementById('contactTable');
-            const trs = table.getElementsByTagName('tr');
-            for (let i = 1; i < trs.length; i++) {
-                let display = 'none';
-                const tds = trs[i].getElementsByTagName('td');
-                for (let j = 0; j < tds.length; j++) {
-                    if (tds[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        display = '';
-                        break;
-                    }
-                }
-                trs[i].style.display = display;
-            }
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Contactos</h1>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar por nombre o email" class="search-box">
-            <table id="contactTable" class="contact-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Comentario</th>
-                        <th>IP</th>
-                        <th>País</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% contactos.forEach(contacto => { %>
-                    <tr>
-                        <td><%= contacto.nombre %></td>
-                        <td><%= contacto.email %></td>
-                        <td><%= contacto.comentario %></td>
-                        <td><%= contacto.ip %></td>
-                        <td><%= contacto.pais %></td>
-                        <td><%= contacto.fecha_hora %></td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        </div>
-    </main>
-    <footer>
-        <div class="container">
-            <p>&copy; Taller Los Santos 2024</p>
-        </div>
-    </footer>
-</body>
-</html>
+\u003c!DOCTYPE html\u003e
+\u003chtml lang="es"\u003e
+\u003chead\u003e
+\u003c%- include('partials/head', { title: 'Contactos - Panel Admin' }) %\u003e
+\u003cscript\u003e
+function filterTable() {
+const filter = document.getElementById('searchInput').value.toUpperCase();
+const table = document.getElementById('contactTable');
+const trs = table.getElementsByTagName('tr');
+for (let i = 1; i \u003c trs.length; i++) {
+let display = 'none';
+const tds = trs[i].getElementsByTagName('td');
+for (let j = 0; j \u003c tds.length; j++) {
+if (tds[j].innerHTML.toUpperCase().indexOf(filter) \u003e -1) {
+display = '';
+break;
+}
+}
+trs[i].style.display = display;
+}
+}
+\u003c/script\u003e
+\u003c/head\u003e
+\u003cbody\u003e
+\u003cheader\u003e
+\u003cdiv class="container"\u003e
+\u003ch1\u003eContactos\u003c/h1\u003e
+\u003cnav\u003e
+\u003ca href="/"\u003eVolver al Inicio\u003c/a\u003e
+\u003ca href="/auth/logout"\u003eCerrar Sesión\u003c/a\u003e
+\u003c/nav\u003e
+\u003c/div\u003e
+\u003c/header\u003e
+\u003cmain\u003e
+\u003cdiv class="container"\u003e
+\u003cinput type="text" id="searchInput" onkeyup="filterTable()" placeholder="Buscar por nombre o email"
+class="search-box"\u003e
+\u003ctable id="contactTable" class="contact-table"\u003e
+\u003cthead\u003e
+\u003ctr\u003e
+\u003cth\u003eNombre\u003c/th\u003e
+\u003cth\u003eEmail\u003c/th\u003e
+\u003cth\u003eComentario\u003c/th\u003e
+\u003cth\u003eIP\u003c/th\u003e
+\u003cth\u003ePaís\u003c/th\u003e
+\u003cth\u003eFecha\u003c/th\u003e
+\u003c/tr\u003e
+\u003c/thead\u003e
+\u003ctbody\u003e
+\u003c% contactos.forEach(contacto =\u003e { %\u003e
+\u003ctr\u003e
+\u003ctd\u003e\u003c%= contacto.nombre %\u003e\u003c/td\u003e
+\u003ctd\u003e\u003c%= contacto.email %\u003e\u003c/td\u003e
+\u003ctd\u003e\u003c%= contacto.comentario %\u003e\u003c/td\u003e
+\u003ctd\u003e\u003c%= contacto.ip %\u003e\u003c/td\u003e
+\u003ctd\u003e\u003c%= contacto.pais %\u003e\u003c/td\u003e
+\u003ctd\u003e\u003c%= contacto.fecha_hora %\u003e\u003c/td\u003e
+\u003c/tr\u003e
+\u003c% }); %\u003e
+\u003c/tbody\u003e
+\u003c/table\u003e
+\u003c/div\u003e
+\u003c/main\u003e
+\u003c%- include('partials/footer') %\u003e
+\u003c/body\u003e
+\u003c/html\u003e

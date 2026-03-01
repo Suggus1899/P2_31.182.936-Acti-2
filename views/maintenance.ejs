@@ -1,73 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller los Santos</title>
-    <meta name="keywords" content="taller mecánico, mantenimiento de vehículos, reparación de autos">
-    <meta name="author" content="Taller los Santos">
-    <link rel="stylesheet" href="/stylesheets/index.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4MZ2VB0K3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-D4MZ2VB0K3');
-    </script>
+    <%- include('partials/head', { title: 'Mantenimiento Preventivo' }) %>
 </head>
+
 <body>
-    <header role="banner">
-        <div class="container">
-            <p class="logo">Taller los Santos</p>
-            <nav class="nav-menu" aria-label="Main Navigation">
-                <a href="/" class="active">Inicio</a>
-                <a href="/about">Sobre nosotros</a>
-                <a href="/services">Servicios</a>
-                <a href="/contact">Contacto</a>
-            </nav>
-        </div>
-    </header>
+    <%- include('partials/header') %>
 
-    <main role="main">
-        <section id="service-overview" role="region" aria-labelledby="service-overview-title">
-            <div class="container">
-                <h1 id="service-overview-title">Mantenimiento Preventivo</h1>
-                <img src="images/Maintenance.jpg" alt="Mantenimiento Preventivo">
-                <p>Realizamos mantenimientos preventivos esenciales para mantener tu vehículo en óptimas condiciones. Este servicio incluye cambios de aceite, filtros, y revisiones de frenos, asegurando que todos los componentes estén en buen estado. Un mantenimiento regular previene problemas mayores y extiende la vida útil de tu coche.</p>
-            </div>
-        </section>
+        <main role="main">
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Cuidado Esencial</span>
+                    <h1>Mantenimiento <span class="text-gradient">Preventivo</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto;">
+                        La clave para la longevidad de tu vehículo. Utilizamos aceites sintéticos de última generación y
+                        filtros OEM.
+                    </p>
+                </div>
+            </section>
 
-        <section id="benefits" role="region" aria-labelledby="benefits-title">
-            <div class="container">
-                <h2 id="benefits-title">Beneficios del Mantenimiento Preventivo</h2>
-                <ul>
-                    <li>⏱ Prolonga la vida útil del vehículo.</li>
-                    <li>💰 Reduce costos a largo plazo al prevenir reparaciones mayores.</li>
-                    <li>🔧 Asegura que todos los componentes funcionen eficientemente.</li>
-                    <li>🛡 Mejora la seguridad en la carretera.</li>
-                    <li>🌱 Aumenta la eficiencia de combustible y reduce la huella de carbono.</li>
-                </ul>
-            </div>
-        </section>
+            <section class="section-padding">
+                <div class="container">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Básico</h3>
+                            <div class="price">$49<span>/servicio</span></div>
+                            <ul class="features-list">
+                                <li>✅ Cambio de Aceite Semisintético</li>
+                                <li>✅ Filtro de Aceite</li>
+                                <li>✅ Revisión de 10 puntos</li>
+                                <li>✅ Lavado Básico</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-outline" style="width: 100%;">Agendar</button>
+                        </div>
 
-        <section id="included-services" role="region" aria-labelledby="included-services-title">
-            <div class="container">
-                <h2 id="included-services-title">Servicios Incluidos</h2>
-                <ul>
-                    <li>Cambio de aceite y filtro.</li>
-                    <li>Revisión y reemplazo de filtros de aire y combustible.</li>
-                    <li>Revisión y ajuste de frenos.</li>
-                    <li>Inspección y rotación de neumáticos.</li>
-                    <li>Chequeo de baterías y sistema de carga.</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+                        <div class="pricing-card featured">
+                            <div class="pricing-badge">POPULAR</div>
+                            <h3>Premium</h3>
+                            <div class="price">$89<span>/servicio</span></div>
+                            <ul class="features-list">
+                                <li>✅ Aceite 100% Sintético</li>
+                                <li>✅ Filtro de Alto Flujo</li>
+                                <li>✅ Revisión de 25 puntos</li>
+                                <li>✅ Limpieza de Inyectores</li>
+                                <li>✅ Lavado y Aspirado</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
 
-    <footer role="contentinfo">
-        <div class="container">
-            <p>&copy; Taller Los Santos 2024</p>
-        </div>
-    </footer>
+                        <div class="pricing-card">
+                            <h3>Full Service</h3>
+                            <div class="price">$149<span>/servicio</span></div>
+                            <ul class="features-list">
+                                <li>✅ Todo lo de Premium</li>
+                                <li>✅ Cambio de Bujías</li>
+                                <li>✅ Filtro de Aire y Cabina</li>
+                                <li>✅ Rotación de Llantas</li>
+                                <li>✅ Escaneo de Computadora</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-outline" style="width: 100%;">Agendar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DETAILED INFO -->
+            <section class="section-dark">
+                <div class="container split-layout">
+                    <div class="image-wrapper">
+                        <img src="images/Maintenance.jpg" alt="Mecánico trabajando">
+                    </div>
+                    <div class="text-content">
+                        <h2>¿Por qué es vital el mantenimiento?</h2>
+                        <p>Un motor bien mantenido consume menos combustible, emite menos contaminantes y tiene una vida
+                            útil hasta un 50% mayor.</p>
+                        <ul class="feature-list">
+                            <li>⏱ Evita averías costosas en carretera</li>
+                            <li>💰 Mejora el valor de reventa</li>
+                            <li>🛡 Garantía de seguridad para tu familia</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
 </body>
+
 </html>

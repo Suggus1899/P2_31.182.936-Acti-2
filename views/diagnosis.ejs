@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Diagnóstico Computarizado' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- HERO -->
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">Tecnología Avanzada</span>
+                    <h1>Diagnóstico <span class="text-gradient">Computarizado</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto; font-size: 1.25rem;">
+                        Descubrimos el problema exacto de tu vehículo en minutos con equipos de última generación.
+                    </p>
+                </div>
+            </section>
+
+            <!-- WHAT IS OBD -->
+            <section class="section-padding">
+                <div class="container split-layout">
+                    <div class="text-content">
+                        <h2>¿Qué es el Diagnóstico OBD2?</h2>
+                        <p>
+                            El sistema <strong>OBD2 (On-Board Diagnostics II)</strong> es el estándar universal de
+                            diagnóstico
+                            para vehículos fabricados desde 1996. Permite leer códigos de error, monitorear sensores en
+                            tiempo real y detectar problemas antes de que se conviertan en fallas costosas.
+                        </p>
+                        <p>
+                            Nuestros técnicos utilizan scanners profesionales de nivel concesionario que van más allá
+                            de los lectores genéricos, accediendo a módulos específicos del fabricante.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✅ Lectura de códigos de error (DTCs)</li>
+                            <li>✅ Datos en vivo de sensores</li>
+                            <li>✅ Pruebas de actuadores</li>
+                            <li>✅ Reprogramación de módulos</li>
+                            <li>✅ Borrado de códigos post-reparación</li>
+                        </ul>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="images/Repairs.jpg" alt="Scanner OBD2" style="border-radius: var(--radius-lg);">
+                    </div>
+                </div>
+            </section>
+
+            <!-- EQUIPMENT -->
+            <section class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Nuestro Equipamiento</h2>
+                        <p>Herramientas de diagnóstico de nivel profesional</p>
+                    </div>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">💻</div>
+                            <h3>Autel MaxiSys Elite</h3>
+                            <p>Scanner multimarca con cobertura del 90% de vehículos en el mercado. Actualización
+                                constante de software.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔌</div>
+                            <h3>Launch X431 PRO</h3>
+                            <p>Diagnóstico avanzado para vehículos asiáticos, europeos y americanos con funciones
+                                especiales.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">📊</div>
+                            <h3>Osciloscopio Automotriz</h3>
+                            <p>Análisis de señales eléctricas para diagnóstico profundo de sensores y actuadores.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔋</div>
+                            <h3>Analizador de Batería</h3>
+                            <p>Prueba de carga, arranque y alternador para el sistema eléctrico completo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WHAT WE DIAGNOSE -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Sistemas que Diagnosticamos</h2>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Motor</h3>
+                            <div class="price">$25</div>
+                            <ul class="feature-list">
+                                <li>✅ Códigos de falla del motor</li>
+                                <li>✅ Sensores de oxígeno</li>
+                                <li>✅ Sensor MAF/MAP</li>
+                                <li>✅ Sistema de inyección</li>
+                                <li>✅ Catalizador</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card featured">
+                            <div class="pricing-badge">Completo</div>
+                            <h3>Diagnóstico Full</h3>
+                            <div class="price">$45</div>
+                            <ul class="feature-list">
+                                <li>✅ Todos los módulos</li>
+                                <li>✅ ABS y Airbags</li>
+                                <li>✅ Transmisión</li>
+                                <li>✅ Aire acondicionado</li>
+                                <li>✅ Body Control Module</li>
+                                <li>✅ Informe impreso</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Eléctrico</h3>
+                            <div class="price">$30</div>
+                            <ul class="feature-list">
+                                <li>✅ Batería y alternador</li>
+                                <li>✅ Motor de arranque</li>
+                                <li>✅ Luces y señales</li>
+                                <li>✅ Fusibles y relés</li>
+                                <li>✅ Cableado</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMMON CODES -->
+            <section class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Códigos de Error Comunes</h2>
+                        <p>Estos son algunos de los códigos más frecuentes que encontramos</p>
+                    </div>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <button class="faq-question">P0300 - Fallo de encendido aleatorio <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Indica que el motor no está quemando combustible correctamente en uno o más
+                                    cilindros. Puede ser causado por bujías desgastadas, bobinas de encendido
+                                    defectuosas, o problemas de inyectores.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">P0171 - Mezcla pobre (Banco 1) <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>El motor está recibiendo demasiado aire o poco combustible. Revisar fugas de vacío,
+                                    sensor MAF sucio, filtro de combustible obstruido o inyectores sucios.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">P0420 - Eficiencia del catalizador baja <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>El convertidor catalítico no está funcionando eficientemente. Puede requerir
+                                    reemplazo del catalizador o revisar sensores de oxígeno.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">P0442 - Fuga pequeña en sistema EVAP <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>El sistema de control de emisiones evaporativas tiene una fuga pequeña. Comúnmente
+                                    causado por tapa de combustible suelta o dañada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>¿Check Engine encendido?</h2>
+                    <p>No ignores las señales de tu vehículo. Un diagnóstico a tiempo te ahorra dinero.</p>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Agendar Diagnóstico</button>
+                        <a href="/quote" class="btn-outline">Cotizar Servicio</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

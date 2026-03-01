@@ -1,147 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller los Santos</title>
-    <meta name="description" content="Taller Mecánico Los Santos en Cagua, Estado Aragua. Ofrecemos servicios de mantenimiento y reparación de vehículos con más de 20 años de experiencia.">
-    <meta property="og:title" content="Taller los Santos">
-    <meta property="og:description" content="Taller Mecánico Los Santos en Cagua, Estado Aragua. Ofrecemos servicios de mantenimiento y reparación de vehículos con más de 20 años de experiencia.">
-    <meta property="og:image" content="URL_de_la_imagen_de_previsualización">
-    <meta property="og:url" content="URL_de_la_página">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/stylesheets/index.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4MZ2VB0K3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-D4MZ2VB0K3');
-    </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <%- include('partials/head', { includeRecaptcha: true }) %>
 </head>
+
 <body>
-    
-    <header role="banner">
-        <div class="container">
-            <p class="logo">Taller los Santos</p>
-            <nav aria-label="Main Navigation">
-                <button class="nav-toggle" aria-label="Abrir menú" onclick="toggleMenu()">☰</button>
-                <div class="nav-menu">
-                    <a href="/">Inicio</a>
-                    <a href="/about">Sobre nosotros</a>
-                    <div class="dropdown">
-                        <button class="dropbtn" aria-label="Servicios">Nuestros servicios ⬇</button>
-                        <div class="dropdown-content">
-                            <a href="/maintenance">Mantenimiento Preventivo</a>
-                            <a href="/repairs">Reparaciones Mecánicas</a>
-                            <a href="/tires">Servicio de Neumáticos</a>
+
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- HERO SECTION -->
+            <section id="hero">
+                <div class="hero-content">
+                    <span class="badge-neon">TALLER CERTIFICADO</span>
+                    <h1>Ingeniería Automotriz <br> <span class="text-gradient">De Alto Nivel</span></h1>
+                    <p>Especialistas en mecánica de precisión, tuning de alto rendimiento y mantenimiento preventivo. Tu
+                        vehículo merece el mejor trato de Los Santos.</p>
+                    <div class="hero-buttons">
+                        <button id="contactButton" onclick="openModal()" class="btn-primary">Agendar Cita</button>
+                        <button onclick="location.href='#servicios'" class="btn-outline">Nuestros Servicios</button>
+                    </div>
+                </div>
+                <div class="hero-overlay"></div>
+            </section>
+
+            <!-- STATS SECTION -->
+            <section id="stats">
+                <div class="container stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="20">0</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="5000">0</span>
+                        <span class="stat-label">Vehículos Reparados</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="100">0</span>
+                        <span class="stat-label">% Satisfacción</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">Expertos Certificados</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES PREVIEW -->
+            <section id="servicios" class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Soluciones Integrales</h2>
+                        <p>Mantenimiento preventivo, correctivo y performance para tu automóvil.</p>
+                    </div>
+                    <div class="servicios-grid">
+                        <div class="carta" onclick="location.href='/maintenance'">
+                            <div class="carta-image">
+                                <img src="images/Maintenance.jpg" alt="Mantenimiento Preventivo">
+                                <div class="carta-overlay"></div>
+                            </div>
+                            <div class="carta-content">
+                                <h3>Mantenimiento</h3>
+                                <p>Cambio de aceite, filtros y revisión general para prolongar la vida de tu motor.</p>
+                                <span class="link-arrow">Ver detalles &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="carta" onclick="location.href='/repairs'">
+                            <div class="carta-image">
+                                <img src="images/Repairs.jpg" alt="Reparaciones Mecánicas">
+                                <div class="carta-overlay"></div>
+                            </div>
+                            <div class="carta-content">
+                                <h3>Reparaciones</h3>
+                                <p>Diagnóstico computarizado y reparación de fallas complejas en motor y transmisión.
+                                </p>
+                                <span class="link-arrow">Ver detalles &rarr;</span>
+                            </div>
+                        </div>
+                        <div class="carta" onclick="location.href='/tires'">
+                            <div class="carta-image">
+                                <img src="images/Tires.jpg" alt="Servicio de Neumáticos">
+                                <div class="carta-overlay"></div>
+                            </div>
+                            <div class="carta-content">
+                                <h3>Neumáticos</h3>
+                                <p>Alineación 3D, balanceo y venta de neumáticos de alto rendimiento.</p>
+                                <span class="link-arrow">Ver detalles &rarr;</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="/contact">Contacto</a>
                 </div>
-            </nav>            
-        </div>
-    </header>
+            </section>
 
-    <main role="main">
-        <section id="hero">
-            <h1>Contáctanos para <br> los mejores Mecánicos</h1>
-            <button id="contactButton" onclick="openModal()">¡Contáctanos ya!</button>
-        </section>
-
-        <section id="Losherma">
-            <div class="container">
-                <div class="image-container">
-                    <img src="images/Losherma.jpg" alt="Imagen del equipo de Los Santos">
-                </div>
-                <div class="texto">
-                    <h2>¡Somos Los Santos!</h2>
-                    <p>
-                        Taller Mecánico Los Santos en Cagua, Estado Aragua, ofrece más de 20 años de experiencia en mantenimiento y reparación de vehículos. Con servicios que incluyen cambios de aceite, reparaciones mecánicas y electricidad automotriz, nuestro equipo asegura la mejor calidad y atención personalizada. Visítanos de lunes a viernes de 8:00 AM a 6:00 PM y sábados de 8:00 AM a 2:00 PM.
-                    </p>
-                    <button id="contactButton" onclick="openModal()">Contacto</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="Nuestrosservicios">
-            <div class="container">
-                <h2>Nuestros Servicios</h2>
-                <div class="servicios">
-                    <div class="carta">
-                        <img src="images/Maintenance.jpg" alt="Mantenimiento Preventivo">
-                        <h3>Mantenimiento Preventivo</h3>
-                        <p>Realizamos mantenimientos preventivos esenciales para mantener tu vehículo en óptimas condiciones. Este servicio incluye cambios de aceite, filtros, y revisiones de frenos, asegurando que todos los componentes estén en buen estado.</p>
-                        <button onclick="location.href='/maintenance'">Conocer más +</button>
+            <!-- PROCESS SECTION -->
+            <section id="process" class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Nuestro Proceso</h2>
+                        <p>Transparencia y profesionalismo en cada paso.</p>
                     </div>
-                    <div class="carta">
-                        <img src="images/Repairs.jpg" alt="Reparaciones Mecánicas">
-                        <h3>Reparaciones Mecánicas</h3>
-                        <p>Nuestro taller está equipado para diagnosticar y reparar una amplia gama de problemas mecánicos. Ya sea el motor, la transmisión o el sistema de escape, nuestros técnicos capacitados se encargan de devolver tu vehículo a su estado óptimo de funcionamiento.</p>
-                        <button onclick="location.href='/repairs'">Conocer más +</button>
-                    </div>
-                    <div class="carta">
-                        <img src="images/Tires.jpg" alt="Servicio de Neumáticos">
-                        <h3>Servicio de Neumáticos</h3>
-                        <p>Ofrecemos servicios completos para tus neumáticos, incluyendo venta, instalación, balanceo y alineación. Mantener los neumáticos en buen estado es crucial para la seguridad en la carretera.</p>
-                        <button onclick="location.href='/tires'">Conocer más +</button>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-icon">01</div>
+                            <h3>Diagnóstico</h3>
+                            <p>Evaluación digital completa para identificar el problema real.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">02</div>
+                            <h3>Presupuesto</h3>
+                            <p>Cotización detallada y transparente sin costos ocultos.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">03</div>
+                            <h3>Reparación</h3>
+                            <p>Ejecución por técnicos certificados usando repuestos originales.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">04</div>
+                            <h3>Entrega</h3>
+                            <p>Tu vehículo listo, probado y garantizado.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="caracteristicas">
-            <div class="container">
-                <div class="texto">
-                    <h2>Atención al Cliente y Preguntas Frecuentes</h2>
-                    <ul id="caracteristicas-list">
-                        <li>✅ Asesoría completa de mantenimiento</li>
-                        <li>✅ Horario flexible de atención</li>
-                        <li>✅ Asistencia y guía financiera</li>
-                        <li>✅ Descuentos y promociones</li>
-                        <li>✅ Servicio de grúa las 24 horas</li>
-                        <li>✅ Atención personalizada y rápida</li>
-                        <li>✅ Garantía en todas nuestras reparaciones</li>
-                        <li class="extra">✅ Técnicos altamente capacitados</li>
-                        <li class="extra">✅ Uso de repuestos originales y de alta calidad</li>
-                        <li class="extra">✅ Servicio de diagnóstico computarizado</li>
-                    </ul>
-                    <button id="toggleButton" onclick="toggleFeatures()">Mostrar Menos</button>
+            <!-- ABOUT PREVIEW -->
+            <section id="about-preview">
+                <div class="container split-layout">
+                    <div class="image-wrapper">
+                        <img src="images/Losherma.jpg" alt="Equipo Los Santos">
+                        <div class="experience-badge">
+                            <span class="years">20+</span>
+                            <span class="text">Años de<br>Calidad</span>
+                        </div>
+                    </div>
+                    <div class="text-content">
+                        <h2>La Excelencia es Nuestra Norma</h2>
+                        <p>
+                            Desde nuestros inicios en Cagua, nos hemos dedicado a elevar el estándar de la mecánica
+                            automotriz.
+                            No somos solo un taller; somos un centro de ingeniería automotriz donde la pasión se
+                            encuentra con la precisión.
+                        </p>
+                        <ul class="feature-list">
+                            <li>✅ Garantía certificada en mano de obra</li>
+                            <li>✅ Repuestos OEM y de alto rendimiento</li>
+                            <li>✅ Sala de espera VIP con WiFi</li>
+                        </ul>
+                        <button onclick="location.href='/about'" class="btn-outline">Conoce nuestra historia</button>
+                    </div>
                 </div>
-                <img src="images/Client.jpg" alt="Atención al Cliente">
-            </div>
-        </section>
-        
-    </main>
-    
-    <footer role="contentinfo">
-        <div class="container">
-            <p>&copy; Taller Los Santos 2024</p>
-        </div>
-    </footer>
+            </section>
 
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2>Contáctanos</h2>
-            <form id="contactForm" action="/contact/add" method="POST" onsubmit="return handleSubmit(event)">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="nombre" placeholder="Escribe tu nombre" required><br>
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required><br>
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="comentario" placeholder="Escribe tu mensaje" required></textarea><br>
-                <!-- Widget de reCAPTCHA -->
-                <div class="g-recaptcha" data-sitekey="6LdELq8qAAAAAMyxoN3WRlC2PghCmnXcBUc5V34V"></div>
-                <button type="submit">Enviar</button>
-            </form>
-            <div id="confirmationMessage" class="confirmation-message" aria-live="polite">
-                ¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.
-            </div>
-        </div>
-    </div>
+            <!-- TESTIMONIALS -->
+            <section id="testimonials" class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Lo que dicen nuestros clientes</h2>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <p class="quote">"El mejor servicio de tuning en la ciudad. Transformaron mi coche por
+                                completo. La atención al detalle es increíble."</p>
+                            <div class="author">
+                                <div class="avatar">JM</div>
+                                <div class="info">
+                                    <strong>Juan Martínez</strong>
+                                    <span>Cliente VIP</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="quote">"Rapidez y honestidad. Me explicaron todo el proceso y el precio fue justo.
+                                Totalmente recomendados."</p>
+                            <div class="author">
+                                <div class="avatar">AR</div>
+                                <div class="info">
+                                    <strong>Ana Rodríguez</strong>
+                                    <span>Cliente Frecuente</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="quote">"Me salvaron de una reparación costosa que otro taller diagnosticó mal.
+                                Profesionales de verdad."</p>
+                            <div class="author">
+                                <div class="avatar">CP</div>
+                                <div class="info">
+                                    <strong>Carlos Pérez</strong>
+                                    <span>Entusiasta de Autos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <script src="/javascripts/scripts.js"></script>
+            <!-- FAQ SECTION -->
+            <section id="faq" class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Preguntas Frecuentes</h2>
+                    </div>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <button class="faq-question">¿Qué métodos de pago aceptan? <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Aceptamos tarjetas de crédito, débito, transferencias bancarias y efectivo. También
+                                    ofrecemos planes de financiamiento para reparaciones mayores.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Tienen garantía sus reparaciones? <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Sí, todas nuestras reparaciones cuentan con una garantía de 6 meses o 10,000 km, lo
+                                    que ocurra primero, en mano de obra y repuestos suministrados por nosotros.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">¿Necesito cita previa? <span class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Recomendamos agendar cita para garantizar la atención inmediata, pero también
+                                    atendemos emergencias y walk-ins según disponibilidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BRANDS SECTION -->
+            <section class="brands-section">
+                <div class="container">
+                    <p style="text-align: center; color: var(--text-muted); margin-bottom: var(--spacing-md);">
+                        Trabajamos con las mejores marcas</p>
+                    <div class="brands-track">
+                        <span style="font-size: 1.5rem; font-weight: bold;">MICHELIN</span>
+                        <span style="font-size: 1.5rem; font-weight: bold;">MOBIL 1</span>
+                        <span style="font-size: 1.5rem; font-weight: bold;">BOSCH</span>
+                        <span style="font-size: 1.5rem; font-weight: bold;">PIRELLI</span>
+                        <span style="font-size: 1.5rem; font-weight: bold;">NGK</span>
+                        <span style="font-size: 1.5rem; font-weight: bold;">CASTROL</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA BANNER -->
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>¿Listo para llevar tu auto al siguiente nivel?</h2>
+                    <p>No esperes a que falle. Agenda tu diagnóstico hoy mismo.</p>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Agendar Ahora</button>
+                        <button onclick="location.href='https://wa.me/123456789'" class="btn-outline">WhatsApp
+                            Directo</button>
+                    </div>
+                </div>
+            </section>
+
+            <%- include('partials/footer') %>
+
+                <!-- Modal de Contacto -->
+                <div id="contactModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button" onclick="closeModal()">&times;</span>
+                        <h2>Contáctanos</h2>
+                        <form id="contactForm" action="/contact" method="POST" onsubmit="return handleSubmit(event)">
+                            <label for="name">Nombre:</label>
+                            <input type="text" id="name" name="nombre" placeholder="Escribe tu nombre" required><br>
+                            <label for="email">Correo electrónico:</label>
+                            <input type="email" id="email" name="email" placeholder="Escribe tu correo electrónico"
+                                required><br>
+                            <label for="message">Mensaje:</label>
+                            <textarea id="message" name="comentario" placeholder="Escribe tu mensaje"
+                                required></textarea><br>
+                            <!-- Widget de reCAPTCHA -->
+                            <div class="g-recaptcha" data-sitekey="6LdELq8qAAAAAMyxoN3WRlC2PghCmnXcBUc5V34V"></div>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button type="submit">Enviar</button>
+                        </form>
+                        <div id="confirmationMessage" class="confirmation-message" aria-live="polite">
+                            ¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.
+                        </div>
+                    </div>
+                </div>
+
+                <%- include('partials/scripts') %>
 </body>
+
 </html>

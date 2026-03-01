@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Servicio de Frenos' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- HERO -->
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">🛑 Seguridad Primero</span>
+                    <h1>Servicio de <span class="text-gradient">Frenos</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto; font-size: 1.25rem;">
+                        Tu seguridad no tiene precio. Confía en expertos para el sistema más crítico de tu vehículo.
+                    </p>
+                </div>
+            </section>
+
+            <!-- IMPORTANCE -->
+            <section class="section-padding">
+                <div class="container split-layout">
+                    <div class="text-content">
+                        <h2>¿Por Qué Son Tan Importantes los Frenos?</h2>
+                        <p>
+                            Los frenos son el sistema de seguridad más importante de tu vehículo. Un sistema de frenos
+                            en mal estado puede duplicar la distancia de frenado y poner en riesgo tu vida y la de
+                            otros conductores.
+                        </p>
+                        <p>
+                            En <strong>Taller Los Santos</strong> realizamos inspecciones completas y utilizamos
+                            repuestos de calidad OEM para garantizar un frenado óptimo.
+                        </p>
+                        <div
+                            style="background: var(--bg-tertiary); padding: var(--spacing-md); border-radius: var(--radius-md); margin-top: var(--spacing-md); border-left: 4px solid var(--color-accent);">
+                            <p style="margin: 0;"><strong>¿Sabías que?</strong> A 100 km/h, unos frenos en mal estado
+                                pueden agregar hasta 15 metros a tu distancia de frenado. Eso es la diferencia entre
+                                detenerte a tiempo o no.</p>
+                        </div>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="images/Repairs.jpg" alt="Sistema de Frenos" style="border-radius: var(--radius-lg);">
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVICES -->
+            <section class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Nuestros Servicios de Frenos</h2>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Inspección</h3>
+                            <div class="price">GRATIS</div>
+                            <p style="color: var(--text-secondary);">Con cualquier servicio</p>
+                            <ul class="feature-list">
+                                <li>✅ Medición de pastillas</li>
+                                <li>✅ Inspección de discos</li>
+                                <li>✅ Revisión de líquido</li>
+                                <li>✅ Verificación de mangueras</li>
+                                <li>✅ Informe detallado</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-outline" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Cambio de Pastillas</h3>
+                            <div class="price">Desde $60</div>
+                            <p style="color: var(--text-secondary);">Por eje (2 ruedas)</p>
+                            <ul class="feature-list">
+                                <li>✅ Pastillas de calidad OEM</li>
+                                <li>✅ Limpieza de caliper</li>
+                                <li>✅ Lubricación de guías</li>
+                                <li>✅ Ajuste de freno de mano</li>
+                                <li>✅ Garantía 1 año</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card featured">
+                            <div class="pricing-badge">Completo</div>
+                            <h3>Kit Completo</h3>
+                            <div class="price">Desde $180</div>
+                            <p style="color: var(--text-secondary);">Por eje (2 ruedas)</p>
+                            <ul class="feature-list">
+                                <li>✅ Discos nuevos</li>
+                                <li>✅ Pastillas premium</li>
+                                <li>✅ Líquido de frenos DOT4</li>
+                                <li>✅ Sangrado del sistema</li>
+                                <li>✅ Lubricación completa</li>
+                                <li>✅ Garantía 2 años</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMPONENTS -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Componentes del Sistema de Frenos</h2>
+                    </div>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🔘</div>
+                            <h3>Pastillas de Freno</h3>
+                            <p>Presionan contra el disco para generar fricción. Se desgastan con el uso normal y deben
+                                revisarse cada 30,000 km.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">💿</div>
+                            <h3>Discos de Freno</h3>
+                            <p>Superficie metálica donde friccionan las pastillas. Deben estar lisos y sin ranuras para
+                                un frenado efectivo.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔧</div>
+                            <h3>Calipers</h3>
+                            <p>Contienen los pistones que presionan las pastillas. Pueden trabarse o fugar líquido si no
+                                se mantienen.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">💧</div>
+                            <h3>Líquido de Frenos</h3>
+                            <p>Transmite la presión del pedal a los calipers. Absorbe humedad con el tiempo y pierde
+                                efectividad.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔴</div>
+                            <h3>Cilindro Maestro</h3>
+                            <p>Convierte la presión del pedal en presión hidráulica. El "cerebro" del sistema de frenos.
+                            </p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">📍</div>
+                            <h3>ABS (Antibloqueo)</h3>
+                            <p>Sistema electrónico que previene el bloqueo de ruedas al frenar, manteniendo el control
+                                del vehículo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WARNING SIGNS -->
+            <section class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>⚠️ Señales de Alerta</h2>
+                        <p>Si notas alguno de estos síntomas, visítanos inmediatamente</p>
+                    </div>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <button class="faq-question">Chirrido metálico al frenar <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Un chirrido agudo al aplicar los frenos generalmente indica que las pastillas están
+                                    completamente gastadas y el metal está rozando el disco. Esto daña los discos
+                                    rápidamente.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Pedal esponjoso o que baja mucho <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Un pedal que se siente suave o baja más de lo normal puede indicar aire en el
+                                    sistema, fuga de líquido de frenos, o problema con el cilindro maestro.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Vibración al frenar <span class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Si sientes vibración en el pedal o volante al frenar, probablemente los discos están
+                                    alabeados (deformados) y necesitan rectificarse o reemplazarse.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">El vehículo jala hacia un lado <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Si el auto tira hacia un lado al frenar, puede haber un caliper trabado, desgaste
+                                    desigual de pastillas, o problema con el sistema hidráulico.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Luz de frenos encendida <span class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>La luz de advertencia en el tablero puede indicar bajo nivel de líquido, pastillas
+                                    gastadas (si tiene sensor), o problema con el ABS.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BRAKE FLUID -->
+            <section class="section-padding">
+                <div class="container split-layout">
+                    <div class="image-wrapper">
+                        <img src="images/Maintenance.jpg" alt="Líquido de Frenos"
+                            style="border-radius: var(--radius-lg);">
+                    </div>
+                    <div class="text-content">
+                        <h2>Cambio de Líquido de Frenos</h2>
+                        <p>
+                            El líquido de frenos es higroscópico, lo que significa que absorbe humedad del ambiente.
+                            Con el tiempo, esta humedad reduce el punto de ebullición del líquido, pudiendo causar
+                            "vapor lock" (pérdida de frenado por calor).
+                        </p>
+                        <h4 style="margin-top: var(--spacing-md);">Recomendaciones:</h4>
+                        <ul class="feature-list">
+                            <li>⏰ Cambiar cada 2 años o 40,000 km</li>
+                            <li>🔍 Verificar nivel mensualmente</li>
+                            <li>💧 Usar el tipo correcto (DOT3, DOT4, DOT5.1)</li>
+                            <li>🚫 Nunca mezclar tipos de líquido</li>
+                        </ul>
+                        <div class="price" style="margin-top: var(--spacing-md);">$35</div>
+                        <p style="color: var(--text-secondary);">Sangrado y cambio completo</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>Tu Seguridad es Nuestra Prioridad</h2>
+                    <p>No arriesgues tu vida ni la de tu familia. Agenda una inspección gratuita de frenos hoy.</p>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Inspección Gratuita</button>
+                        <a href="/quote" class="btn-outline">Cotizar Servicio</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

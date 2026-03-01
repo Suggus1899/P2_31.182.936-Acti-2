@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Blog - Consejos Automotrices' }) %>
+        <style>
+            .blog-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: var(--spacing-lg);
+            }
+
+            .blog-card {
+                background: var(--bg-tertiary);
+                border-radius: var(--radius-md);
+                overflow: hidden;
+                border: 1px solid var(--border-dark);
+                transition: transform var(--transition-fast);
+            }
+
+            .blog-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--color-accent);
+            }
+
+            .blog-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .blog-content {
+                padding: var(--spacing-md);
+            }
+
+            .blog-meta {
+                display: flex;
+                gap: var(--spacing-sm);
+                margin-bottom: var(--spacing-xs);
+                font-size: 0.85em;
+                color: var(--text-muted);
+            }
+
+            .blog-tag {
+                background: var(--color-primary);
+                color: white;
+                padding: 2px 8px;
+                border-radius: var(--radius-sm);
+                font-size: 0.75em;
+            }
+
+            .blog-card h3 {
+                margin-bottom: var(--spacing-xs);
+            }
+
+            .blog-card h3 a {
+                color: white;
+                transition: color var(--transition-fast);
+            }
+
+            .blog-card h3 a:hover {
+                color: var(--color-accent);
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- BLOG HERO -->
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Conocimiento</span>
+                    <h1>Blog <span class="text-gradient">Automotriz</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto;">
+                        Consejos, novedades y todo lo que necesitas saber para cuidar tu vehículo.
+                    </p>
+                </div>
+            </section>
+
+            <!-- BLOG GRID -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="blog-grid">
+                        <!-- Article 1 -->
+                        <article class="blog-card">
+                            <img src="images/Maintenance.jpg" alt="Cambio de Aceite">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-tag">Mantenimiento</span>
+                                    <span>15 Ene 2024</span>
+                                </div>
+                                <h3><a href="#">¿Cada Cuánto Cambiar el Aceite del Motor?</a></h3>
+                                <p>Descubre los intervalos recomendados según el tipo de aceite y tu estilo de
+                                    conducción.</p>
+                            </div>
+                        </article>
+
+                        <!-- Article 2 -->
+                        <article class="blog-card">
+                            <img src="images/Tires.jpg" alt="Neumáticos">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-tag">Neumáticos</span>
+                                    <span>10 Ene 2024</span>
+                                </div>
+                                <h3><a href="#">5 Señales de que Necesitas Llantas Nuevas</a></h3>
+                                <p>Aprende a identificar el desgaste y cuándo es momento de cambiar tus neumáticos.</p>
+                            </div>
+                        </article>
+
+                        <!-- Article 3 -->
+                        <article class="blog-card">
+                            <img src="images/Repairs.jpg" alt="Batería">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-tag">Diagnóstico</span>
+                                    <span>05 Ene 2024</span>
+                                </div>
+                                <h3><a href="#">Cómo Saber si Tu Batería Está Fallando</a></h3>
+                                <p>Síntomas comunes de una batería agotada y cómo prevenir quedarte varado.</p>
+                            </div>
+                        </article>
+
+                        <!-- Article 4 -->
+                        <article class="blog-card">
+                            <img src="images/About.jpg" alt="Frenos">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-tag">Seguridad</span>
+                                    <span>01 Ene 2024</span>
+                                </div>
+                                <h3><a href="#">La Importancia del Sistema de Frenos</a></h3>
+                                <p>Todo sobre pastillas, discos y líquido de frenos. No juegues con tu seguridad.</p>
+                            </div>
+                        </article>
+
+                        <!-- Article 5 -->
+                        <article class="blog-card">
+                            <img src="images/Losherma.jpg" alt="Tuning">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-tag">Performance</span>
+                                    <span>28 Dic 2023</span>
+                                </div>
+                                <h3><a href="#">Introducción al Tuning: ¿Vale la Pena?</a></h3>
+                                <p>Exploramos los pros y contras de las modificaciones de rendimiento.</p>
+                            </div>
+                        </article>
+
+                        <!-- Article 6 -->
+                        <article class="blog-card">
+                            <img src="images/Maintenance.jpg" alt="AC">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-tag">Climatización</span>
+                                    <span>20 Dic 2023</span>
+                                </div>
+                                <h3><a href="#">Mantenimiento del Aire Acondicionado</a></h3>
+                                <p>Cómo mantener tu A/C funcionando como nuevo, especialmente en clima tropical.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

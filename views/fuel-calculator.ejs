@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Calculadora de Ahorro' }) %>
+        <style>
+            .calculator-card {
+                background: var(--bg-tertiary);
+                padding: var(--spacing-lg);
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border-dark);
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .result-box {
+                background: var(--bg-secondary);
+                padding: var(--spacing-md);
+                border-radius: var(--radius-md);
+                margin-top: var(--spacing-md);
+                text-align: center;
+                display: none;
+            }
+
+            .result-box.show {
+                display: block;
+                animation: fadeIn 0.5s;
+            }
+
+            .savings-amount {
+                font-size: 3rem;
+                font-weight: 800;
+                color: #00e676;
+                /* Green for money */
+                text-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">Herramientas</span>
+                    <h1>Calculadora de <span class="text-gradient">Combustible</span></h1>
+                    <p>Descubre cuánto podrías ahorrar optimizando el rendimiento de tu motor.</p>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="calculator-card">
+                        <form id="fuelForm">
+                            <div class="form-group">
+                                <label>Kilómetros recorridos por semana (aprox)</label>
+                                <input type="number" id="kmPerWeek" placeholder="Ej: 300" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Consumo actual (Km por Litro)</label>
+                                <input type="number" id="currentEfficiency" placeholder="Ej: 8" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Precio del combustible (por Litro)</label>
+                                <input type="number" id="fuelPrice" value="0.50" step="0.01" required>
+                            </div>
+                            <button type="button" onclick="calculateSavings()" class="btn-primary"
+                                style="width: 100%;">Calculadora Ahorro</button>
+                        </form>
+
+                        <div id="result" class="result-box">
+                            <h3>Potencial de Ahorro Anual</h3>
+                            <p>Con una afinación correcta, podrías mejorar tu rendimiento hasta un 15%.</p>
+                            <div class="savings-amount" id="savingsValue">$0</div>
+                            <p>¡Eso es suficiente para pagar tu próximo mantenimiento!</p>
+                            <a href="/appointment" class="btn-outline" style="margin-top: 10px;">Agendar Afinación</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+
+                <script>
+                    function calculateSavings() {
+                        const km = parseFloat(document.getElementById('kmPerWeek').value);
+                        const eff = parseFloat(document.getElementById('currentEfficiency').value);
+                        const price = parseFloat(document.getElementById('fuelPrice').value);
+
+                        if (!km || !eff || !price) {
+                            alert('Por favor completa todos los campos');
+                            return;
+                        }
+
+                        // Gasto actual anual
+                        const litersPerWeek = km / eff;
+                        const costPerWeek = litersPerWeek * price;
+                        const costYear = costPerWeek * 52;
+
+                        // Gasto optimizado (15% mejora)
+                        const improvedEff = eff * 1.15;
+                        const improvedLiters = km / improvedEff;
+                        const improvedCost = improvedLiters * price * 52;
+
+                        const savings = costYear - improvedCost;
+
+                        document.getElementById('savingsValue').textContent = '$' + savings.toFixed(2);
+                        document.getElementById('result').classList.add('show');
+                    }
+                </script>
+</body>
+
+</html>

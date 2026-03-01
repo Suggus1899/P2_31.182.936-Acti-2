@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Galería de Proyectos' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Portafolio</span>
+                    <h1>Nuestros <span class="text-gradient">Trabajos</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto;">
+                        Una muestra de la pasión y precisión que ponemos en cada vehículo.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="gallery-filters">
+                        <button class="filter-btn active" onclick="filterGallery('all')">Todos</button>
+                        <button class="filter-btn" onclick="filterGallery('performance')">Performance</button>
+                        <button class="filter-btn" onclick="filterGallery('restoration')">Restauración</button>
+                        <button class="filter-btn" onclick="filterGallery('maintenance')">Mantenimiento</button>
+                    </div>
+
+                    <div class="gallery-grid" id="galleryGrid">
+                        <!-- Item 1 -->
+                        <div class="gallery-item" data-category="performance">
+                            <img src="images/Repairs.jpg" alt="Tuning Motor">
+                            <div class="gallery-overlay">
+                                <div class="gallery-overlay-content">
+                                    <span class="gallery-tag">Performance</span>
+                                    <h3>Tuning Stage 2</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="gallery-item" data-category="restoration">
+                            <img src="images/Tires.jpg" alt="Alineación">
+                            <div class="gallery-overlay">
+                                <div class="gallery-overlay-content">
+                                    <span class="gallery-tag">Restauración</span>
+                                    <h3>Suspensión Deportiva</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="gallery-item" data-category="maintenance">
+                            <img src="images/Maintenance.jpg" alt="Mantenimiento">
+                            <div class="gallery-overlay">
+                                <div class="gallery-overlay-content">
+                                    <span class="gallery-tag">Mantenimiento</span>
+                                    <h3>Servicio Mayor</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Item 4 -->
+                        <div class="gallery-item" data-category="performance">
+                            <img src="images/Losherma.jpg" alt="Equipo">
+                            <div class="gallery-overlay">
+                                <div class="gallery-overlay-content">
+                                    <span class="gallery-tag">Performance</span>
+                                    <h3>Equipo de Competición</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more items as needed -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>¿Inspirado?</h2>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Cotizar mi Proyecto</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+
+                <script>
+                    function filterGallery(category) {
+                        const items = document.querySelectorAll('.gallery-item');
+                        const buttons = document.querySelectorAll('.filter-btn');
+
+                        // Update active button
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        event.target.classList.add('active');
+
+                        items.forEach(item => {
+                            if (category === 'all' || item.getAttribute('data-category') === category) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }
+                </script>
+</body>
+
+</html>

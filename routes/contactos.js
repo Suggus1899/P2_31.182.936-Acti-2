@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ContactosModel = require('../models/ContactosModel');
+const ContactosController = require('../controllers/ContactosController');
 
 // Middleware de autenticación
 const isAuthenticated = (req, res, next) => {
@@ -9,6 +10,9 @@ const isAuthenticated = (req, res, next) => {
   }
   res.redirect('/auth/login');
 };
+
+// Ruta para manejar el envío del formulario de contacto
+router.post('/contact', ContactosController.add);
 
 // Ruta autenticada para mostrar contactos
 router.get('/', isAuthenticated, async (req, res) => {

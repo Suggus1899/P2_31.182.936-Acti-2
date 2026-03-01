@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Garantías' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- GUARANTEES HERO -->
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Tranquilidad Total</span>
+                    <h1>Nuestras <span class="text-gradient">Garantías</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto;">
+                        Respaldamos nuestro trabajo con las garantías más completas del sector.
+                    </p>
+                </div>
+            </section>
+
+            <!-- GUARANTEE CARDS -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🛡️</div>
+                            <h3>6 Meses en Mano de Obra</h3>
+                            <p>Cualquier defecto en el trabajo realizado será corregido sin costo adicional.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">⚙️</div>
+                            <h3>12 Meses en Repuestos</h3>
+                            <p>Los repuestos originales que instalamos tienen garantía de fábrica extendida.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🚗</div>
+                            <h3>10,000 Km de Cobertura</h3>
+                            <p>Lo que ocurra primero entre el tiempo y el kilometraje recorrido.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">📋</div>
+                            <h3>Informe Detallado</h3>
+                            <p>Recibes un reporte completo de todo lo realizado y lo que cubre la garantía.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- WARRANTY TERMS -->
+            <section class="section-dark">
+                <div class="container split-layout">
+                    <div class="text-content">
+                        <h2>Términos y Condiciones</h2>
+                        <ul class="feature-list">
+                            <li>✅ La garantía aplica solo a trabajos realizados en nuestras instalaciones.</li>
+                            <li>✅ Debe presentar el comprobante de servicio original.</li>
+                            <li>✅ No cubre daños por accidentes, mal uso o modificaciones no autorizadas.</li>
+                            <li>✅ Los repuestos deben ser los suministrados por nosotros.</li>
+                            <li>✅ Aplica únicamente al vehículo y componentes especificados en la factura.</li>
+                        </ul>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="images/About.jpg" alt="Garantía de Calidad">
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>¿Tienes una reclamación de garantía?</h2>
+                    <p>Contáctanos y te atenderemos de inmediato.</p>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Contactar</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

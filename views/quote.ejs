@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Cotizador en Línea' }) %>
+        <style>
+            .quote-wizard {
+                max-width: 700px;
+                margin: 0 auto;
+                background: var(--bg-tertiary);
+                padding: var(--spacing-lg);
+                border-radius: var(--radius-lg);
+                border: 1px solid var(--border-dark);
+            }
+
+            .step {
+                display: none;
+            }
+
+            .step.active {
+                display: block;
+            }
+
+            .step-indicator {
+                display: flex;
+                justify-content: center;
+                gap: var(--spacing-md);
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .step-dot {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--bg-secondary);
+                border: 2px solid var(--border-light);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+                font-weight: bold;
+            }
+
+            .step-dot.active {
+                background: var(--color-primary);
+                border-color: var(--color-accent);
+                color: white;
+            }
+
+            .step-dot.completed {
+                background: var(--color-accent);
+                border-color: var(--color-accent);
+            }
+
+            .option-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: var(--spacing-sm);
+                margin: var(--spacing-md) 0;
+            }
+
+            .option-btn {
+                background: var(--bg-secondary);
+                border: 2px solid var(--border-light);
+                padding: var(--spacing-md);
+                border-radius: var(--radius-md);
+                text-align: center;
+                cursor: pointer;
+                transition: all var(--transition-fast);
+            }
+
+            .option-btn:hover,
+            .option-btn.selected {
+                border-color: var(--color-accent);
+                background: rgba(213, 0, 249, 0.1);
+            }
+
+            .option-btn .icon {
+                font-size: 2rem;
+                margin-bottom: 5px;
+            }
+
+            .quote-result {
+                text-align: center;
+                padding: var(--spacing-lg);
+            }
+
+            .quote-price {
+                font-size: 4rem;
+                font-weight: 800;
+                color: var(--color-accent);
+            }
+
+            .nav-buttons {
+                display: flex;
+                justify-content: space-between;
+                margin-top: var(--spacing-lg);
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Rápido y Fácil</span>
+                    <h1>Cotizador <span class="text-gradient">en Línea</span></h1>
+                    <p>Obtén un estimado de precio en menos de 1 minuto.</p>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="quote-wizard">
+                        <div class="step-indicator">
+                            <div class="step-dot active" id="dot1">1</div>
+                            <div class="step-dot" id="dot2">2</div>
+                            <div class="step-dot" id="dot3">3</div>
+                            <div class="step-dot" id="dot4">✓</div>
+                        </div>
+
+                        <!-- Step 1: Vehicle Type -->
+                        <div class="step active" id="step1">
+                            <h3 style="text-align: center;">¿Qué tipo de vehículo tienes?</h3>
+                            <div class="option-grid">
+                                <div class="option-btn" data-value="sedan" data-price="0">
+                                    <div class="icon">🚗</div>
+                                    <div>Sedán</div>
+                                </div>
+                                <div class="option-btn" data-value="suv" data-price="20">
+                                    <div class="icon">🚙</div>
+                                    <div>SUV / Camioneta</div>
+                                </div>
+                                <div class="option-btn" data-value="pickup" data-price="30">
+                                    <div class="icon">🛻</div>
+                                    <div>Pickup</div>
+                                </div>
+                                <div class="option-btn" data-value="sport" data-price="50">
+                                    <div class="icon">🏎️</div>
+                                    <div>Deportivo</div>
+                                </div>
+                            </div>
+                            <div class="nav-buttons">
+                                <span></span>
+                                <button class="btn-primary" onclick="nextStep(1)">Siguiente →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Service Type -->
+                        <div class="step" id="step2">
+                            <h3 style="text-align: center;">¿Qué servicio necesitas?</h3>
+                            <div class="option-grid">
+                                <div class="option-btn" data-value="oil" data-price="50">
+                                    <div class="icon">🛢️</div>
+                                    <div>Cambio de Aceite</div>
+                                </div>
+                                <div class="option-btn" data-value="brakes" data-price="80">
+                                    <div class="icon">🛑</div>
+                                    <div>Frenos</div>
+                                </div>
+                                <div class="option-btn" data-value="alignment" data-price="40">
+                                    <div class="icon">🔧</div>
+                                    <div>Alineación</div>
+                                </div>
+                                <div class="option-btn" data-value="diagnosis" data-price="30">
+                                    <div class="icon">💻</div>
+                                    <div>Diagnóstico</div>
+                                </div>
+                                <div class="option-btn" data-value="full" data-price="150">
+                                    <div class="icon">⚙️</div>
+                                    <div>Servicio Completo</div>
+                                </div>
+                            </div>
+                            <div class="nav-buttons">
+                                <button class="btn-outline" onclick="prevStep(2)">← Atrás</button>
+                                <button class="btn-primary" onclick="nextStep(2)">Siguiente →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Extras -->
+                        <div class="step" id="step3">
+                            <h3 style="text-align: center;">¿Algún extra?</h3>
+                            <div class="option-grid">
+                                <div class="option-btn" data-value="wash" data-price="15">
+                                    <div class="icon">🧼</div>
+                                    <div>Lavado Premium</div>
+                                </div>
+                                <div class="option-btn" data-value="polish" data-price="30">
+                                    <div class="icon">✨</div>
+                                    <div>Pulido</div>
+                                </div>
+                                <div class="option-btn" data-value="ac" data-price="25">
+                                    <div class="icon">❄️</div>
+                                    <div>Recarga A/C</div>
+                                </div>
+                                <div class="option-btn" data-value="none" data-price="0">
+                                    <div class="icon">➖</div>
+                                    <div>Ninguno</div>
+                                </div>
+                            </div>
+                            <div class="nav-buttons">
+                                <button class="btn-outline" onclick="prevStep(3)">← Atrás</button>
+                                <button class="btn-primary" onclick="calculateQuote()">Ver Cotización</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Result -->
+                        <div class="step" id="step4">
+                            <div class="quote-result">
+                                <h2>Tu Cotización Estimada</h2>
+                                <div class="quote-price" id="totalPrice">$0</div>
+                                <p style="color: var(--text-secondary);">*Precio estimado sujeto a verificación</p>
+                                <div style="margin-top: var(--spacing-lg);">
+                                    <button onclick="openModal()" class="btn-primary">Agendar Ahora</button>
+                                    <button onclick="resetQuote()" class="btn-outline" style="margin-left: 10px;">Nueva
+                                        Cotización</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+
+                <script>
+                    let selections = { vehicle: 0, service: 0, extras: 0 };
+
+                    document.querySelectorAll('.option-btn').forEach(btn => {
+                        btn.addEventListener('click', function () {
+                            this.parentElement.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                            this.classList.add('selected');
+                        });
+                    });
+
+                    function nextStep(current) {
+                        const currentStep = document.getElementById('step' + current);
+                        const selected = currentStep.querySelector('.option-btn.selected');
+                        if (!selected) {
+                            alert('Por favor selecciona una opción');
+                            return;
+                        }
+
+                        if (current === 1) selections.vehicle = parseInt(selected.dataset.price);
+                        if (current === 2) selections.service = parseInt(selected.dataset.price);
+
+                        document.getElementById('step' + current).classList.remove('active');
+                        document.getElementById('step' + (current + 1)).classList.add('active');
+                        document.getElementById('dot' + current).classList.add('completed');
+                        document.getElementById('dot' + (current + 1)).classList.add('active');
+                    }
+
+                    function prevStep(current) {
+                        document.getElementById('step' + current).classList.remove('active');
+                        document.getElementById('step' + (current - 1)).classList.add('active');
+                        document.getElementById('dot' + current).classList.remove('active');
+                    }
+
+                    function calculateQuote() {
+                        const step3 = document.getElementById('step3');
+                        const selected = step3.querySelector('.option-btn.selected');
+                        if (selected) selections.extras = parseInt(selected.dataset.price);
+
+                        const total = selections.vehicle + selections.service + selections.extras;
+                        document.getElementById('totalPrice').textContent = '$' + total;
+
+                        document.getElementById('step3').classList.remove('active');
+                        document.getElementById('step4').classList.add('active');
+                        document.getElementById('dot3').classList.add('completed');
+                        document.getElementById('dot4').classList.add('active', 'completed');
+                    }
+
+                    function resetQuote() {
+                        selections = { vehicle: 0, service: 0, extras: 0 };
+                        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+                        document.getElementById('step1').classList.add('active');
+                        document.querySelectorAll('.step-dot').forEach(d => d.classList.remove('active', 'completed'));
+                        document.getElementById('dot1').classList.add('active');
+                        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    }
+                </script>
+</body>
+
+</html>

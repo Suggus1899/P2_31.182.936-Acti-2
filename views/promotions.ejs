@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Promociones' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- PROMO HERO -->
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">🔥 Ofertas Limitadas</span>
+                    <h1>Super <span class="text-gradient">Promociones</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto;">
+                        Aprovecha nuestras ofertas exclusivas antes de que expiren.
+                    </p>
+                </div>
+            </section>
+
+            <!-- FEATURED PROMO WITH COUNTDOWN -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="pricing-card featured" style="max-width: 600px; margin: 0 auto;">
+                        <div class="pricing-badge">HOT</div>
+                        <h2>Mantenimiento Premium</h2>
+                        <p>Cambio de aceite sintético + filtros + revisión de 25 puntos</p>
+                        <div class="price">$69 <span style="text-decoration: line-through; opacity: 0.5;">$89</span>
+                        </div>
+
+                        <p style="margin-bottom: var(--spacing-sm);">La oferta termina en:</p>
+                        <div class="countdown-container" id="promoCountdown">
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="days">00</span>
+                                <span class="countdown-label">Días</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="hours">00</span>
+                                <span class="countdown-label">Horas</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="minutes">00</span>
+                                <span class="countdown-label">Min</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-number" id="seconds">00</span>
+                                <span class="countdown-label">Seg</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal()" class="btn-primary"
+                            style="width: 100%; margin-top: var(--spacing-md);">Reclamar Oferta</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MORE PROMOS GRID -->
+            <section class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Más Ofertas</h2>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>2x1 en Alineación</h3>
+                            <div class="price">$40</div>
+                            <p>Trae un amigo y ambos pagan solo una alineación.</p>
+                            <button onclick="openModal()" class="btn-outline" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Escaneo Gratis</h3>
+                            <div class="price">$0</div>
+                            <p>Diagnóstico computarizado gratis con cualquier reparación mayor.</p>
+                            <button onclick="openModal()" class="btn-outline" style="width: 100%;">Ver</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>10% Off Primer Servicio</h3>
+                            <div class="price">-10%</div>
+                            <p>Descuento para clientes nuevos en su primer servicio.</p>
+                            <button onclick="openModal()" class="btn-outline" style="width: 100%;">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+
+                <script>
+                    // Countdown Timer
+                    const endDate = new Date();
+                    endDate.setDate(endDate.getDate() + 7); // 7 days from now
+
+                    function updateCountdown() {
+                        const now = new Date().getTime();
+                        const distance = endDate - now;
+
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        document.getElementById('days').textContent = String(days).padStart(2, '0');
+                        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                    }
+
+                    setInterval(updateCountdown, 1000);
+                    updateCountdown();
+                </script>
+</body>
+
+</html>

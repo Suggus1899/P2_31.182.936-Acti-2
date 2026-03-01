@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'Servicio de Aire Acondicionado' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <!-- HERO -->
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">❄️ Clima Perfecto</span>
+                    <h1>Aire <span class="text-gradient">Acondicionado</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto; font-size: 1.25rem;">
+                        Mantén tu vehículo fresco en el calor tropical. Servicio completo de A/C automotriz.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SERVICES -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Nuestros Servicios de A/C</h2>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Recarga de Gas</h3>
+                            <div class="price">$45</div>
+                            <ul class="feature-list">
+                                <li>✅ Evacuación del sistema</li>
+                                <li>✅ Prueba de vacío</li>
+                                <li>✅ Recarga con R134a/R1234yf</li>
+                                <li>✅ Aceite PAG incluido</li>
+                                <li>✅ Verificación de presiones</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card featured">
+                            <div class="pricing-badge">Recomendado</div>
+                            <h3>Servicio Completo</h3>
+                            <div class="price">$89</div>
+                            <ul class="feature-list">
+                                <li>✅ Diagnóstico con manómetros</li>
+                                <li>✅ Detección de fugas UV</li>
+                                <li>✅ Recarga de gas</li>
+                                <li>✅ Limpieza de evaporador</li>
+                                <li>✅ Cambio filtro de cabina</li>
+                                <li>✅ Desinfección antibacterial</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Agendar</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Reparación</h3>
+                            <div class="price">Desde $120</div>
+                            <ul class="feature-list">
+                                <li>✅ Cambio de compresor</li>
+                                <li>✅ Reemplazo de condensador</li>
+                                <li>✅ Reparación de fugas</li>
+                                <li>✅ Válvula de expansión</li>
+                                <li>✅ Mangueras y conectores</li>
+                            </ul>
+                            <button onclick="openModal()" class="btn-primary" style="width: 100%;">Cotizar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOW IT WORKS -->
+            <section class="section-dark">
+                <div class="container split-layout">
+                    <div class="text-content">
+                        <h2>¿Cómo Funciona el Sistema de A/C?</h2>
+                        <p>
+                            El aire acondicionado de tu vehículo es un sistema cerrado que utiliza un refrigerante
+                            (gas) para absorber el calor del habitáculo y expulsarlo al exterior.
+                        </p>
+                        <h4 style="margin-top: var(--spacing-md);">Componentes Principales:</h4>
+                        <ul class="feature-list">
+                            <li>🔵 <strong>Compresor:</strong> El "corazón" del sistema, comprime el gas refrigerante.
+                            </li>
+                            <li>🔵 <strong>Condensador:</strong> Enfría el gas comprimido y lo convierte en líquido.
+                            </li>
+                            <li>🔵 <strong>Evaporador:</strong> Absorbe el calor del interior del vehículo.</li>
+                            <li>🔵 <strong>Válvula de Expansión:</strong> Regula el flujo del refrigerante.</li>
+                            <li>🔵 <strong>Filtro Secador:</strong> Elimina humedad e impurezas del sistema.</li>
+                        </ul>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="images/Maintenance.jpg" alt="Sistema de A/C" style="border-radius: var(--radius-lg);">
+                    </div>
+                </div>
+            </section>
+
+            <!-- SYMPTOMS -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Señales de que tu A/C Necesita Servicio</h2>
+                    </div>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">🌡️</div>
+                            <h3>Enfría Poco</h3>
+                            <p>El aire sale tibio o no enfría como antes. Probable falta de gas refrigerante o fuga.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">💨</div>
+                            <h3>Mal Olor</h3>
+                            <p>Olor a humedad o moho al encender el A/C. Indica bacterias en el evaporador.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔊</div>
+                            <h3>Ruidos Extraños</h3>
+                            <p>Chirridos o clics al activar el aire. Puede ser el compresor o el clutch.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">💧</div>
+                            <h3>Agua en el Interior</h3>
+                            <p>Charcos de agua en el piso del pasajero. Drenaje del evaporador obstruido.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🔄</div>
+                            <h3>Ciclos Cortos</h3>
+                            <p>El compresor se enciende y apaga constantemente. Posible problema eléctrico o bajo nivel
+                                de gas.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">⚡</div>
+                            <h3>Alto Consumo</h3>
+                            <p>El consumo de combustible aumenta notablemente con el A/C encendido. Sistema ineficiente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIPS -->
+            <section class="section-dark">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Consejos de Mantenimiento</h2>
+                    </div>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <button class="faq-question">Usa el A/C regularmente <span class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Enciende el aire acondicionado al menos 10 minutos cada semana, incluso en invierno.
+                                    Esto mantiene los sellos lubricados y previene fugas.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Cambia el filtro de cabina <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>El filtro de cabina debe cambiarse cada 15,000-20,000 km. Un filtro sucio reduce el
+                                    flujo de aire y puede causar malos olores.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">No lo enciendas al máximo inmediatamente <span
+                                    class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Al entrar al auto caliente, abre las ventanas primero para que salga el aire
+                                    caliente, luego enciende el A/C gradualmente.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Servicio preventivo anual <span class="arrow">+</span></button>
+                            <div class="faq-answer">
+                                <p>Un servicio anual de A/C previene fallas mayores y mantiene el sistema funcionando
+                                    eficientemente. Es más económico prevenir que reparar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>¿Tu A/C no enfría como antes?</h2>
+                    <p>Agenda una revisión y vuelve a disfrutar del confort en tu vehículo.</p>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Agendar Servicio</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

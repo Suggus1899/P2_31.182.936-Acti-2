@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('partials/head', { title: 'En los Medios' }) %>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main role="main">
+            <section class="section-dark" style="padding-top: 100px; text-align: center;">
+                <div class="container">
+                    <span class="badge-neon">Prensa</span>
+                    <h1>Los Santos en <span class="text-gradient">Los Medios</span></h1>
+                    <p>Nuestra trayectoria reconocida por la prensa local y nacional.</p>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container">
+                    <div class="grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+                        <article class="carta">
+                            <div
+                                style="height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold;">
+                                EL PERIODIQUITO
+                            </div>
+                            <div style="padding: 20px;">
+                                <h3>"Innovación en Cagua: El Taller del Futuro"</h3>
+                                <p>Reportaje sobre cómo Taller Los Santos implementó diagnóstico digital pionero en la
+                                    región.</p>
+                                <a href="#" style="color: var(--color-accent);">Leer artículo completo &rarr;</a>
+                            </div>
+                        </article>
+
+                        <article class="carta">
+                            <div
+                                style="height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; color: black; font-weight: bold;">
+                                GUÍA MOTOR
+                            </div>
+                            <div style="padding: 20px;">
+                                <h3>Top 10 Talleres de Aragua 2023</h3>
+                                <p>Los Santos Customs figura en el puesto #1 por satisfacción al cliente y equipamiento
+                                    técnico.</p>
+                                <a href="#" style="color: var(--color-accent);">Ver ranking &rarr;</a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
+</body>
+
+</html>

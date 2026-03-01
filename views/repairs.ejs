@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller los Santos</title>
-    <meta name="keywords" content="taller mecánico, reparación de autos, mantenimiento vehicular, Cagua">
-    <meta name="author" content="Taller Los Santos">
-    <link rel="stylesheet" href="/stylesheets/index.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D4MZ2VB0K3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-D4MZ2VB0K3');
-    </script>
+    <%- include('partials/head', { title: 'Reparaciones Mecánicas' }) %>
 </head>
+
 <body>
-    <header role="banner">
-        <div class="container">
-            <p class="logo">Taller los Santos</p>
-            <nav aria-label="Main Navigation">
-                <a href="/">Inicio</a>
-                <a href="/about">Sobre nosotros</a>
-                <a href="/services">Servicios</a>
-                <a href="/contact">Contacto</a>
-            </nav>
-        </div>
-    </header>
+    <%- include('partials/header') %>
 
-    <main role="main">
-        <section id="service-overview" role="region" aria-labelledby="service-overview-title">
-            <div class="container">
-                <h1 id="service-overview-title"><%= title %></h1>
-                <img src="images/Repairs.jpg" alt="Reparaciones Mecánicas">
-                <p>Nuestro taller está equipado para diagnosticar y reparar una amplia gama de problemas mecánicos. Ya sea el motor, la transmisión o el sistema de escape, nuestros técnicos capacitados se encargan de devolver tu vehículo a su estado óptimo de funcionamiento, garantizando seguridad y rendimiento.</p>
-            </div>
-        </section>
+        <main role="main">
+            <section class="section-dark" style="text-align: center; padding-top: 100px;">
+                <div class="container">
+                    <span class="badge-neon">Diagnóstico Preciso</span>
+                    <h1>Reparación <span class="text-gradient">Avanzada</span></h1>
+                    <p style="max-width: 700px; margin: 0 auto;">
+                        Desde reconstrucción de motores hasta fallas eléctricas complejas. Si otros no pueden
+                        arreglarlo, nosotros sí.
+                    </p>
+                </div>
+            </section>
 
-        <section id="repair-types" role="region" aria-labelledby="repair-types-title">
-            <div class="container">
-                <h2 id="repair-types-title">Tipos de Reparaciones</h2>
-                <ul>
-                    <li>🔧 Reparaciones de motor: diagnóstico y reparaciones completas.</li>
-                    <li>⚙️ Reparaciones de transmisión: manuales y automáticas.</li>
-                    <li>🛠 Sistema de escape: reparaciones y reemplazos.</li>
-                    <li>🔩 Sistema de suspensión: inspección y reparaciones.</li>
-                    <li>💡 Sistema eléctrico: diagnóstico y solución de problemas.</li>
-                </ul>
-            </div>
-        </section>
+            <!-- SERVICES GRID (Using the existing services grid style but for repair types) -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="servicios-grid">
+                        <div class="carta">
+                            <div class="carta-image">
+                                <!-- Using generic or existing images -->
+                                <img src="images/Repairs.jpg" alt="Motor">
+                            </div>
+                            <div class="carta-content">
+                                <h3>Motor y Transmisión</h3>
+                                <p>Reconstrucción, empaquetaduras, sincronización y diagnóstico de caja de cambios.</p>
+                            </div>
+                        </div>
+                        <div class="carta">
+                            <div class="carta-image">
+                                <!-- Potentially reuse images or placeholders as user didn't provide many -->
+                                <img src="images/Maintenance.jpg" alt="Frenos">
+                            </div>
+                            <div class="carta-content">
+                                <h3>Frenos y Suspensión</h3>
+                                <p>Rectificación de discos, ABS, amortiguadores y tren delantero.</p>
+                            </div>
+                        </div>
+                        <div class="carta">
+                            <div class="carta-image">
+                                <img src="images/Tires.jpg" alt="Electricidad">
+                            </div>
+                            <div class="carta-content">
+                                <h3>Electricidad</h3>
+                                <p>Alternadores, arranque, cableado, luces LED y sistemas de sonido.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        <section id="repair-benefits" role="region" aria-labelledby="repair-benefits-title">
-            <div class="container">
-                <h2 id="repair-benefits-title">Beneficios de nuestras Reparaciones</h2>
-                <ul>
-                    <li>🛠 Técnicos altamente capacitados y certificados.</li>
-                    <li>🔍 Diagnóstico preciso y rápido.</li>
-                    <li>⚙️ Uso de repuestos de alta calidad.</li>
-                    <li>⏱ Reparaciones rápidas y eficaces.</li>
-                    <li>📞 Asistencia post-servicio y garantía.</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+            <section id="cta-banner">
+                <div class="container">
+                    <h2>¿Ruidos extraños? ¿Luces en el tablero?</h2>
+                    <p>Trae tu vehículo para un escaneo computarizado gratuito con cualquier reparación mayor.</p>
+                    <div class="cta-buttons">
+                        <button onclick="openModal()" class="btn-primary">Diagnosticar Ahora</button>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-    <footer role="contentinfo">
-        <div class="container">
-            <p>&copy; Taller Los Santos 2024</p>
-        </div>
-    </footer>
+        <%- include('partials/footer') %>
+            <%- include('partials/scripts') %>
 </body>
+
 </html>

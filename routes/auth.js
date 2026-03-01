@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/UserModel');
+const { ensureAuthenticated } = require('../middleware/authMiddleware');
 
 // Ruta de registro (solo accesible para administradores)
-router.get('/register', (req, res) => {
+router.get('/register', ensureAuthenticated, (req, res) => {
   res.render('register');
 });
 
-router.post('/register', (req, res) => {
+router.post('/register', ensureAuthenticated, (req, res) => {
   const { username, password } = req.body;
   UserModel.registrarUsuario(username, password, (err, result) => {
     if (err) {
